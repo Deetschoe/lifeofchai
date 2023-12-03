@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class npcinteraction : MonoBehaviour
 {
-    public AudioSource initialVoiceClip; // First audio clip
-    public AudioSource secondVoiceClip; // Second audio clip
+    public AudioSource audioSource; // Single AudioSource for playing clips
+    public AudioClip[] initialVoiceClips; // Array of initial voice clips
+    public AudioClip[] secondVoiceClips; // Array of second voice clips
     public float moveSpeed = 0.5f; // Speed of movement
 
+    private int currentClipIndex = 0; // Index for the current set of clips
     private float startX = 10f; // Starting position on the X-axis
     private float targetX = 1f; // Target position on the X-axis
     private float startZ; // Starting position on the Z-axis
@@ -19,6 +21,10 @@ public class npcinteraction : MonoBehaviour
     private bool isMovingToTargetX = true; // Initially moving in the X direction
     private bool isMovingToTargetZ = false; // Initially not moving in the Z direction
     private GameObject cup; // To keep track of the cup GameObject
+
+    // Event to notify when NPC interaction is complete
+    public delegate void InteractionComplete();
+    public event InteractionComplete OnInteractionComplete;
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +64,10 @@ public class npcinteraction : MonoBehaviour
     // Play the initial audio clip once
     void PlayInitialAudioOnce()
     {
-        if (!hasPlayedInitialAudio)
+        if (!hasPlayedInitialAudio && initialVoiceClips.Length > currentClipIndex)
         {
-            initialVoiceClip.Play();
+            audioSource.clip = initialVoiceClips[currentClipIndex];
+            audioSource.Play();
             hasPlayedInitialAudio = true;
         }
     }
@@ -75,7 +82,7 @@ public class npcinteraction : MonoBehaviour
         }
 
         // After playing second audio, start moving on the Z-axis
-        if (!secondVoiceClip.isPlaying && hasPlayedSecondAudio && !isMovingToTargetZ)
+        if (!audioSource.isPlaying && hasPlayedSecondAudio && !isMovingToTargetZ)
         {
             isMovingToTargetZ = true;
             StartCoroutine(MoveToTargetZ());
@@ -105,11 +112,16 @@ public class npcinteraction : MonoBehaviour
         cup.transform.localRotation = Quaternion.identity;
     }
 
+
     // Play the second audio clip
     void PlaySecondAudio()
     {
-        secondVoiceClip.Play();
-        hasPlayedSecondAudio = true;
+        if (secondVoiceClips.Length > currentClipIndex)
+        {
+            audioSource.clip = secondVoiceClips[currentClipIndex];
+            audioSource.Play();
+            hasPlayedSecondAudio = true;
+        }
     }
 
     // Coroutine to move the character on the Z-axis
@@ -122,6 +134,16 @@ public class npcinteraction : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
             yield return null;
         }
+
+        // Increment the clip index and reset flags for the next interaction
+        currentClipIndex = (currentClipIndex + 1) % initialVoiceClips.Length;
+        hasPlayedInitialAudio = false;
+        hasPlayedSecondAudio = false;
+        isMovingToTargetX = true;
+        isMovingToTargetZ = false;
+
+        // Trigger the interaction complete event
+        OnInteractionComplete?.Invoke();
     }
 
     // Check if there is a cup on top and keep a reference to it
