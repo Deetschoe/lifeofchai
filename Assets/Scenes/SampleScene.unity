@@ -1275,6 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquidObject: {fileID: 1992855430}
   liquidLevel: 0
+  proximityObject1: {fileID: 533479800}
 --- !u!4 &533479802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c1a4de0213386b4b94199a2417013a2,
@@ -1883,7 +1884,12 @@ MonoBehaviour:
   origin: {fileID: 305807463}
   streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7,
     type: 3}
-  soundClips: []
+  soundClips:
+  - {fileID: 8300000, guid: 7f2a6d932aa30304ea8961e1977e53a6, type: 3}
+  - {fileID: 8300000, guid: f921c689727895044ae07cd2071e61df, type: 3}
+  - {fileID: 8300000, guid: 45c8ae32a7593b643a2e85b8e911fb2f, type: 3}
+  - {fileID: 8300000, guid: e242bebecf0571e4eb96f050e6660621, type: 3}
+  - {fileID: 8300000, guid: 875a4f8e7319733439048260d3afe00e, type: 3}
 --- !u!111 &808227078
 Animation:
   m_ObjectHideFlags: 0
