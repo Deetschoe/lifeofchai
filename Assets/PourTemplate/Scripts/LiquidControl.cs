@@ -29,6 +29,7 @@ public class LiquidControl : MonoBehaviour
         // Check proximity with each chaiRay object
         foreach (GameObject chaiRayObject in chaiRayObjects)
         {
+            print(Vector3.Distance(transform.position, chaiRayObject.transform.position));
             if (Vector3.Distance(transform.position, chaiRayObject.transform.position) <= ProximityThreshold)
             {
                 if (timeSinceLastIncrement >= IncrementInterval)
