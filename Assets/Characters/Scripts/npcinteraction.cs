@@ -21,6 +21,7 @@ public class npcinteraction : MonoBehaviour
     private bool isMovingToTargetX = true; // Initially moving in the X direction
     private bool isMovingToTargetZ = false; // Initially not moving in the Z direction
     private GameObject cup; // To keep track of the cup GameObject
+    private Vector3 originalPosition; // Original position of the NPC
 
     // Event to notify when NPC interaction is complete
     public delegate void InteractionComplete();
@@ -29,6 +30,9 @@ public class npcinteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Store the original position
+        originalPosition = transform.position;
+
         // Initialize the starting position
         startZ = transform.position.z;
     }
@@ -112,7 +116,6 @@ public class npcinteraction : MonoBehaviour
         cup.transform.localRotation = Quaternion.identity;
     }
 
-
     // Play the second audio clip
     void PlaySecondAudio()
     {
@@ -135,12 +138,8 @@ public class npcinteraction : MonoBehaviour
             yield return null;
         }
 
-        // Increment the clip index and reset flags for the next interaction
-        currentClipIndex = (currentClipIndex + 1) % initialVoiceClips.Length;
-        hasPlayedInitialAudio = false;
-        hasPlayedSecondAudio = false;
-        isMovingToTargetX = true;
-        isMovingToTargetZ = false;
+        // Reset the NPC to its original position and state
+        ResetNPC();
 
         // Trigger the interaction complete event
         OnInteractionComplete?.Invoke();
@@ -159,5 +158,27 @@ public class npcinteraction : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // Reset the NPC for the next interaction
+    private void ResetNPC()
+    {
+        // Destroy the cup
+        if (cup != null)
+        {
+            Destroy(cup);
+        }
+
+        // Reset the NPC position and state
+        transform.position = originalPosition;
+        currentLerpTimeX = 0f;
+        currentLerpTimeZ = 0f;
+        hasPlayedInitialAudio = false;
+        hasPlayedSecondAudio = false;
+        isMovingToTargetX = true;
+        isMovingToTargetZ = false;
+
+        // Increment the clip index for the next interaction
+        currentClipIndex = (currentClipIndex + 1) % initialVoiceClips.Length;
     }
 }
