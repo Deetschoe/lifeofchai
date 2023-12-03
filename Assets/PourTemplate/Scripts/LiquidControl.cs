@@ -6,7 +6,7 @@ public class LiquidControl : MonoBehaviour
     public float liquidLevel = 0.5f; // Default level, can be changed in Inspector or via other scripts
 
     private const float MaxLiquidLevel = 10.0f; // Define the maximum liquid level
-    private const float IncrementAmount = 0.1f; // Amount to increment the liquid level
+    private const float IncrementAmount = 1.0f; // Amount to increment the liquid level
 
     void Update()
     {

@@ -7,6 +7,9 @@ public class PourDetector : MonoBehaviour
     public Transform origin = null;
     public GameObject streamPrefab = null;
 
+    // Array to hold different sound clips
+    public AudioClip[] soundClips;
+
     private bool isPouring = false;
     private Stream currentStream = null;
 
@@ -46,11 +49,8 @@ public class PourDetector : MonoBehaviour
         currentStream = CreateStream();
         currentStream.Begin();
 
-        // Play the audio when pouring starts
-        if (audioSource != null && !audioSource.isPlaying)
-        {
-            audioSource.Play();
-        }
+        // Play a random audio clip
+        PlayRandomSound();
     }
 
     private void EndPour()
@@ -76,5 +76,18 @@ public class PourDetector : MonoBehaviour
     {
         GameObject streamObject = Instantiate(streamPrefab, origin.position, Quaternion.identity, transform);
         return streamObject.GetComponent<Stream>();
+    }
+
+    private void PlayRandomSound()
+    {
+        if (audioSource != null && soundClips.Length > 0)
+        {
+            // Select a random AudioClip from the array
+            AudioClip clip = soundClips[Random.Range(0, soundClips.Length)];
+            audioSource.clip = clip;
+
+            // Play the selected AudioClip
+            audioSource.Play();
+        }
     }
 }
