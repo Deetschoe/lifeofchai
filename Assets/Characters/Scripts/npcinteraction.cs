@@ -102,7 +102,6 @@ public class npcinteraction : MonoBehaviour
         cup.transform.SetParent(transform);
 
         // Adjust the local position and rotation of the cup as needed
-        cup.transform.localPosition = new Vector3(0, 0.5f, 0); // Adjust this as needed
         cup.transform.localRotation = Quaternion.identity;
     }
 

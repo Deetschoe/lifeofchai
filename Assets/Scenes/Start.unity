@@ -11954,6 +11954,7 @@ GameObject:
   - component: {fileID: 1488804306}
   - component: {fileID: 1488804311}
   - component: {fileID: 1488804312}
+  - component: {fileID: 1488804313}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -12254,6 +12255,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1488804313
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488804305}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1650569572
 GameObject:
   m_ObjectHideFlags: 0
@@ -14689,6 +14717,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b836ef4cfa2169641b8edab191d7b675, type: 3}
   - {fileID: 8300000, guid: 7bb6765c8a8282a4695dbb8f44c1e646, type: 3}
   - {fileID: 8300000, guid: 63a77a436b1ad854387b07ef378ed697, type: 3}
+  movementThreshold: 0.1
+  collisionThreshold: 1
 --- !u!82 &1979297279
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14927,7 +14957,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.96364206, b: 0.6084906, a: 1}
-  m_Intensity: 26
+  m_Intensity: 12
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
