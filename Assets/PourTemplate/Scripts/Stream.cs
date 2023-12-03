@@ -58,7 +58,11 @@ public class Stream : MonoBehaviour
 
     private IEnumerator EndPour()
     {
+<<<<<<< HEAD
         while (!HasReachedPosition(0, targetPosition))
+=======
+        while(!HasReachedPosition(0, targetPosition))
+>>>>>>> 2b54cc8a42a66eeffdea9f7ef7f01bde9b83f0ac
         {
             AnimateToPosition(0, targetPosition);
             AnimateToPosition(1, targetPosition);
@@ -95,8 +99,12 @@ public class Stream : MonoBehaviour
         lineRenderer.SetPosition(index, newPosition);
     }
 
+<<<<<<< HEAD
     private bool HasReachedPosition(int index, Vector3 targetPosition)
     {
+=======
+    private bool HasReachedPosition( int index, Vector3 targetPosition) {
+>>>>>>> 2b54cc8a42a66eeffdea9f7ef7f01bde9b83f0ac
         Vector3 currentPosition = lineRenderer.GetPosition(index);
 
         return currentPosition == targetPosition;
@@ -104,7 +112,11 @@ public class Stream : MonoBehaviour
 
     private IEnumerator UpdateParticle()
     {
+<<<<<<< HEAD
         while (gameObject.activeSelf)
+=======
+        while(gameObject.activeSelf)
+>>>>>>> 2b54cc8a42a66eeffdea9f7ef7f01bde9b83f0ac
         {
             splashParticle.gameObject.transform.position = targetPosition;
 
@@ -117,4 +129,8 @@ public class Stream : MonoBehaviour
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2b54cc8a42a66eeffdea9f7ef7f01bde9b83f0ac
