@@ -17,7 +17,6 @@ public class Stream : MonoBehaviour
 
     private void Awake()
     {
-         gameObject.tag = "chaiRay";
 
         lineRenderer = GetComponent<LineRenderer>();
         splashParticle = GetComponentInChildren<ParticleSystem>();
