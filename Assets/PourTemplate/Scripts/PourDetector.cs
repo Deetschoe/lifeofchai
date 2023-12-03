@@ -25,7 +25,6 @@ public class PourDetector : MonoBehaviour
     private void Update()
     {
         bool pourCheck = CalculatePourAngle() > pourThreshold;
-        print(CalculatePourAngle());
 
         if (isPouring != pourCheck)
         {
