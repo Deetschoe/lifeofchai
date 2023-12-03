@@ -7,8 +7,8 @@ public class PotSounds : MonoBehaviour
     public List<AudioClip> metalSounds = new List<AudioClip>();
     private AudioSource audioSource;
     private Vector3 lastPosition;
-    private float movementThreshold = 0.1f; // Adjust this value as needed
-    private float collisionThreshold = 2.0f; // Adjust this value to set the impact strength required for metal sound
+    public float movementThreshold = 0.1f; // Adjust this value as needed
+    public float collisionThreshold = 2.0f; // Adjust this value to set the impact strength required for metal sound
 
     void Start()
     {

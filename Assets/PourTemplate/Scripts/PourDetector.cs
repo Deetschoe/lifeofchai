@@ -50,6 +50,9 @@ public class PourDetector : MonoBehaviour
 
         // Play a random audio clip
         PlayRandomSound();
+
+        // Optionally adjust the volume right when starting to pour
+        AdjustVolume(0.5f); // Example: Set volume to 50%
     }
 
     private void EndPour()
@@ -87,6 +90,15 @@ public class PourDetector : MonoBehaviour
 
             // Play the selected AudioClip
             audioSource.Play();
+        }
+    }
+
+    // Public method to adjust the volume
+    public void AdjustVolume(float volume)
+    {
+        if (audioSource != null)
+        {
+            audioSource.volume = Mathf.Clamp(volume, 0f, 0.7f); // Clamp the volume between 0 and 1
         }
     }
 }
