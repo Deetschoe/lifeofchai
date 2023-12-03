@@ -36,6 +36,9 @@ public class PourDetector : MonoBehaviour
     private void EndPour()
     {
         print("End");
+
+        currentStream.End();
+        currentStream = null;
     }
     private float CalculatePourAngle()
     {
