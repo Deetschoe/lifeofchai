@@ -42,7 +42,7 @@ public class LiquidControl : MonoBehaviour
                 {
                     if (timeSinceLastIncrement >= IncrementInterval)
                     {
-                        liquidLevel += 0.03f;
+                        liquidLevel += 0.09f;
                         timeSinceLastIncrement = 0f;
                     }
                 }
