@@ -9,14 +9,10 @@ public class PlaySoundOnProximity : MonoBehaviour
 
     void Update()
     {
-        print(fireObject); 
-
         if (fireObject != null)
         {
             // Calculate the distance from the bottom of this object (pot) to the fire object
             float distance = Vector3.Distance(GetBottomPosition(), fireObject.transform.position);
-
-            print(distance);
 
             // Check if the distance is less than the threshold
             if (distance <= proximityThreshold)
