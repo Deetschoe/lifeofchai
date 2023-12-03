@@ -70,12 +70,8 @@ public class npcinteraction : MonoBehaviour
     {
         if (!hasPlayedSecondAudio && IsCupOnTop())
         {
-            // Make the cup a child of this object
-            cup.transform.SetParent(transform);
-
-            // Play the second audio clip
-            secondVoiceClip.Play();
-            hasPlayedSecondAudio = true;
+            AttachCup();
+            PlaySecondAudio();
         }
 
         // After playing second audio, start moving on the Z-axis
@@ -84,6 +80,37 @@ public class npcinteraction : MonoBehaviour
             isMovingToTargetZ = true;
             StartCoroutine(MoveToTargetZ());
         }
+    }
+
+    // Attach the cup to the character
+    void AttachCup()
+    {
+        // Disable the rigidbody and collider if necessary
+        Rigidbody cupRigidbody = cup.GetComponent<Rigidbody>();
+        if (cupRigidbody != null)
+        {
+            cupRigidbody.isKinematic = true; // Make rigidbody not be affected by physics
+        }
+
+        Collider cupCollider = cup.GetComponent<Collider>();
+        if (cupCollider != null)
+        {
+            cupCollider.enabled = false; // Disable the collider
+        }
+
+        // Make the cup a child of this object
+        cup.transform.SetParent(transform);
+
+        // Adjust the local position and rotation of the cup as needed
+        cup.transform.localPosition = new Vector3(0, 1, 0); // Adjust this as needed
+        cup.transform.localRotation = Quaternion.identity;
+    }
+
+    // Play the second audio clip
+    void PlaySecondAudio()
+    {
+        secondVoiceClip.Play();
+        hasPlayedSecondAudio = true;
     }
 
     // Coroutine to move the character on the Z-axis
