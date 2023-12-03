@@ -12,6 +12,7 @@ public class Stream : MonoBehaviour
 
     private Vector3 targetPosition = Vector3.zero;
 
+    private GameObject streamColliderObject = null; // New GameObject for collider
 
 
 
@@ -19,10 +20,45 @@ public class Stream : MonoBehaviour
     {
         gameObject.tag = "chaiRay";
 
+
+        // Create the collider object and add a collider to it
+        streamColliderObject = new GameObject("StreamCollider");
+        streamColliderObject.transform.parent = transform; // Set as child of the stream object
+        BoxCollider collider = streamColliderObject.AddComponent<BoxCollider>();
+        collider.isTrigger = true; // Set as trigger to detect collisions without physical impact
+
+        // Optionally, add Rigidbody and set it to kinematic if needed
+        Rigidbody rb = streamColliderObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+
+        rb.useGravity = false;
+
         lineRenderer = GetComponent<LineRenderer>();
         splashParticle = GetComponentInChildren<ParticleSystem>();
 
 
+    }
+
+    private void UpdateCollider()
+    {
+        // Update the collider position and rotation to match the stream
+        if (lineRenderer.positionCount > 0)
+        {
+            Vector3 startPosition = lineRenderer.GetPosition(0);
+            Vector3 endPosition = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
+
+            streamColliderObject.transform.position = Vector3.Lerp(startPosition, endPosition, 0.5f);
+            streamColliderObject.transform.LookAt(endPosition);
+
+            // Adjust collider size based on the stream length
+            BoxCollider collider = streamColliderObject.GetComponent<BoxCollider>();
+            collider.size = new Vector3(collider.size.x, collider.size.y, Vector3.Distance(startPosition, endPosition));
+        }
+    }
+
+    private void Update()
+    {
+        UpdateCollider();
     }
 
     private void Start()
