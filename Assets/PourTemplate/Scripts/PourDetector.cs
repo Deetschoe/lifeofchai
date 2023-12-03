@@ -13,15 +13,19 @@ public class PourDetector : MonoBehaviour
 
     private void Update()
     {
-        bool pourCheck = CalculatePourAngle() < pourThreshold;
+        bool pourCheck = CalculatePourAngle() > pourThreshold;
+        print(CalculatePourAngle());
 
-        if (isPouring != pourCheck) {
+        if (isPouring != pourCheck)
+        {
             isPouring = pourCheck;
 
-            if (isPouring) {
+            if (isPouring)
+            {
                 StartPour();
             }
-            else {
+            else
+            {
                 EndPour();
             }
         }
@@ -36,12 +40,15 @@ public class PourDetector : MonoBehaviour
     private void EndPour()
     {
         print("End");
+
+        currentStream.End();
+        currentStream = null;
     }
     private float CalculatePourAngle()
     {
         //Typically use transform.up
         //Turns it from degrees to degrees 
-        return transform.forward.y * Mathf.Rad2Deg;
+        return transform.up.y * Mathf.Rad2Deg;
     }
     private Stream CreateStream()
     {
