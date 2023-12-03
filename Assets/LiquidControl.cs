@@ -6,7 +6,6 @@ public class LiquidControl : MonoBehaviour
     public float liquidLevel = 0.5f; // Default level, can be changed in Inspector or via other scripts
 
     public GameObject proximityObject1; // First object to check proximity
-    public GameObject proximityObject2; // Second object to check proximity
 
     private float timeSinceLastIncrement = 0f;
     private const float IncrementInterval = 1f; // Time in seconds to increment liquid level
@@ -18,18 +17,21 @@ public class LiquidControl : MonoBehaviour
         Vector3 scale = liquidObject.transform.localScale;
         scale.y = liquidLevel;
         liquidObject.transform.localScale = scale;
-
         liquidObject.transform.localPosition = new Vector3(0, liquidLevel / 2, 0);
 
-        print(Vector3.Distance(proximityObject1.transform.position, proximityObject2.transform.position));
+        // Find all objects with the tag "chaiRay"
+        GameObject[] chaiRayObjects = GameObject.FindGameObjectsWithTag("chaiRay");
 
-        // Check proximity and increment liquid level
-        if (Vector3.Distance(proximityObject1.transform.position, proximityObject2.transform.position) <= ProximityThreshold)
+        // Check proximity with each chaiRay object
+        foreach (GameObject chaiRayObject in chaiRayObjects)
         {
-            if (timeSinceLastIncrement >= IncrementInterval)
+            if (Vector3.Distance(proximityObject1.transform.position, chaiRayObject.transform.position) <= ProximityThreshold)
             {
-                liquidLevel += 0.1f;
-                timeSinceLastIncrement = 0f;
+                if (timeSinceLastIncrement >= IncrementInterval)
+                {
+                    liquidLevel += 0.1f;
+                    timeSinceLastIncrement = 0f;
+                }
             }
         }
 
