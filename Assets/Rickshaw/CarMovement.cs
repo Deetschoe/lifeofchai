@@ -9,7 +9,6 @@ public class CarMovement : MonoBehaviour
     public Bounds activeArea;  // Define an active area for the car
     public float bumpiness = 0.5f;
     public AudioClip[] carSounds; // Array to hold different car sound clips
-
     private AudioSource audioSource; // Reference to the AudioSource component
     private bool movingToEnd = true;
     private float originalYPosition;
@@ -25,7 +24,6 @@ public class CarMovement : MonoBehaviour
     {
         originalYPosition = transform.position.y;
         StartCoroutine(ReactivateCarRoutine());
-
         // Create AudioSource dynamically if it's not already attached
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -33,7 +31,6 @@ public class CarMovement : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
-
     private void Update()
     {
         if (!activeArea.Contains(transform.position))
@@ -52,16 +49,13 @@ public class CarMovement : MonoBehaviour
             Debug.Log("Car is back in the active area");
             isCurrentlyActive = true;
         }
-
         // Move the car
         Vector3 targetPosition = movingToEnd ? endPoint : startPoint;
         Vector3 previousPosition = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
         // Add bumpiness
         float newYPosition = originalYPosition + Mathf.Sin(Time.time * speed) * bumpiness;
         transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
-
         // Check if the car is moving
         if (transform.position != previousPosition && !isMoving)
         {
@@ -73,19 +67,16 @@ public class CarMovement : MonoBehaviour
             isMoving = false;
             StopCarSound();
         }
-
         // Check if reached the target position
         if (transform.position == targetPosition)
         {
             movingToEnd = !movingToEnd;
         }
     }
-
     private void FadeOutAndDeactivate()
     {
         gameObject.SetActive(false);
     }
-
     private IEnumerator ReactivateCarRoutine()
     {
         while (true)
@@ -102,7 +93,6 @@ public class CarMovement : MonoBehaviour
             }
         }
     }
-
     private void PlayRandomCarSound()
     {
         if (audioSource != null && carSounds.Length > 0)
@@ -121,4 +111,3 @@ public class CarMovement : MonoBehaviour
         }
     }
 }
-
