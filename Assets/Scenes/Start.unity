@@ -17467,7 +17467,7 @@ GameObject:
   - component: {fileID: 1488804313}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19179,11 +19179,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  startPoint: {x: 0, y: 0, z: 0}
-  endPoint: {x: 0, y: 0, z: 20}
+  slowDownSpeed: 1
+  detectionDistance: 5
+  startPoint: {x: 6, y: 0.869, z: -18.2}
+  endPoint: {x: 4, y: 0, z: 30}
   activeArea:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 8, y: 10, z: 20}
+    m_Extent: {x: 12, y: 10, z: 20}
   bumpiness: 0.07
   carSounds:
   - {fileID: 8300000, guid: 499182ad79c3bc24a87bf3e9f774255e, type: 3}

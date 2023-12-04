@@ -9,6 +9,7 @@ TagManager:
   - pot
   - cup
   - Contact
+  - npc
   layers:
   - Default
   - TransparentFX
