@@ -171,6 +171,8 @@ public class npcinteraction : MonoBehaviour
 
         // Reset the NPC position and state
         transform.position = originalPosition;
+        transform.rotation = transform.rotation = Quaternion.identity;
+
         currentLerpTimeX = 0f;
         currentLerpTimeZ = 0f;
         hasPlayedInitialAudio = false;
