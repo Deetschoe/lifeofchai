@@ -81,7 +81,8 @@ public class CarMovement : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(30f, 60f));
+            // Wait for a random time between 30 and 90 seconds
+            yield return new WaitForSeconds(Random.Range(30f, 90f));
             if (!gameObject.activeSelf)
             {
                 Debug.Log("Reactivating the car");
@@ -93,6 +94,7 @@ public class CarMovement : MonoBehaviour
             }
         }
     }
+
     private void PlayRandomCarSound()
     {
         if (audioSource != null && carSounds.Length > 0)
