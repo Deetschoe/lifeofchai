@@ -239,7 +239,7 @@ public class npcinteraction : MonoBehaviour
         yield return new WaitForSeconds(10);
 
         // Now load the new scene
-        SceneManager.LoadScene("Rickshaw Run");
+        SceneManager.LoadScene("Rickshaw");
     }
 
 
