@@ -5,6 +5,8 @@ using UnityEngine;
 public class npcinteraction : MonoBehaviour
 {
     public AudioSource audioSource; // Single AudioSource for playing clips
+    public AudioClip noChaiSound; // Array of initial voice clips
+
     public AudioClip[] initialVoiceClips; // Array of initial voice clips
     public AudioClip[] secondVoiceClips; // Array of second voice clips
     public float moveSpeed = 0.5f; // Speed of movement
@@ -154,7 +156,32 @@ public class npcinteraction : MonoBehaviour
             if (hitCollider.gameObject.CompareTag("cup"))
             {
                 cup = hitCollider.gameObject; // Keep a reference to the cup
-                return true;
+
+                // Get the LiquidControl script attached to the cup
+                LiquidControl liquidControl = cup.GetComponent<LiquidControl>();
+
+                if (liquidControl != null)
+                {
+                    // Access and print the liquidLevel
+                    print("Liquid Level: " + liquidControl.liquidLevel);
+                }
+                else
+                {
+                    print("LiquidControl script not found on the cup GameObject");
+                }
+
+
+                if(liquidControl.liquidLevel == 0)
+                {
+                    audioSource.clip = noChaiSound;
+                    audioSource.Play();
+
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         return false;
