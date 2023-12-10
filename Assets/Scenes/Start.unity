@@ -23442,7 +23442,6 @@ GameObject:
   - component: {fileID: 1488804307}
   - component: {fileID: 1488804306}
   - component: {fileID: 1488804313}
-  - component: {fileID: 1488804315}
   - component: {fileID: 1488804314}
   m_Layer: 0
   m_Name: NPC
@@ -23464,7 +23463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1488804314}
-  noChaiSound: {fileID: 8300000, guid: 082f5f44035d9477c9d27221fae839bc, type: 3}
+  noChaiSound: {fileID: 8300000, guid: b8d2fe13d3f07114ea0bdc4a509c10ff, type: 3}
   initialVoiceClips:
   - {fileID: 8300000, guid: b0e963700b3477e428f81c4a05d501fc, type: 3}
   - {fileID: 8300000, guid: 362a794d3f3b69343a44da247d14107b, type: 3}
@@ -23692,18 +23691,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1488804315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488804305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dff8444ae8c65f4fb4d25b65900509e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1496310206
 PrefabInstance:
   m_ObjectHideFlags: 0
