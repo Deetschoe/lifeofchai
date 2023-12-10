@@ -5,19 +5,15 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
     public Transform parentObject; // Parent GameObject
     public Vector3 relativeMinBounds; // Relative to the parent object
     public Vector3 relativeMaxBounds;
-    public float fadeSpeed = 1f; // Speed of the fade effect
 
     private Camera cameraComponent; // Camera component
     private Vector3 actualMinBounds;
     private Vector3 actualMaxBounds;
-    private Color originalClearColor;
-    private Color targetColor = Color.black; // Target color when out of bounds
 
     void Start()
     {
         cameraComponent = GetComponent<Camera>(); // Get the camera component
         UpdateBounds();
-        originalClearColor = cameraComponent.backgroundColor; // Store the original clear color
 
         // Initialize camera position at the center of the bounds
         Vector3 centerPosition = (actualMinBounds + actualMaxBounds) / 2;
@@ -26,14 +22,20 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
 
     void Update()
     {
-        UpdateCameraFade();
+        CheckBounds();
     }
 
-    void UpdateCameraFade()
+    void CheckBounds()
     {
-        bool isWithinBounds = IsWithinBounds(transform.position);
-        Color targetClearColor = isWithinBounds ? originalClearColor : targetColor;
-        cameraComponent.backgroundColor = Color.Lerp(cameraComponent.backgroundColor, targetClearColor, fadeSpeed * Time.deltaTime);
+        // Check if the camera is out of bounds
+        if (!IsWithinBounds(transform.position))
+        {
+            cameraComponent.enabled = false; // Disable the camera
+        }
+        else
+        {
+            cameraComponent.enabled = true; // Enable the camera
+        }
     }
 
     bool IsWithinBounds(Vector3 position)
