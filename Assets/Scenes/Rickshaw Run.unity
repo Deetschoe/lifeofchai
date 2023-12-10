@@ -402,7 +402,7 @@ MonoBehaviour:
   - {fileID: 581080502}
   speed: 4
   turnSpeed: 1
-  maxBounceHeight: 0.05
+  maxBounceHeight: 0.01
   bounceSpeed: 20
 --- !u!1 &79783632
 GameObject:
