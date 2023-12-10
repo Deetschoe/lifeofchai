@@ -14,6 +14,10 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
     {
         UpdateBounds();
         cameraComponent = GetComponent<Camera>(); // Get the camera component
+
+        // Initialize camera position at the center of the bounds
+        Vector3 centerPosition = (actualMinBounds + actualMaxBounds) / 2;
+        transform.position = centerPosition;
     }
 
     void Update()
