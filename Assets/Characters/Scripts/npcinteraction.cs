@@ -6,6 +6,7 @@ public class npcinteraction : MonoBehaviour
 {
     public AudioSource audioSource; // Single AudioSource for playing clips
     public AudioClip noChaiSound; // Array of initial voice clips
+    public emily1 emily1;
 
     public AudioClip[] initialVoiceClips; // Array of initial voice clips
     public AudioClip[] secondVoiceClips; // Array of second voice clips
@@ -180,14 +181,20 @@ public class npcinteraction : MonoBehaviour
                 }
 
 
-                if(liquidControl.liquidLevel == 0)
+                if (liquidControl.liquidLevel == 0)
                 {
-                    if (hasPlayedEndAudio == false) {
+                    if (hasPlayedEndAudio == false)
+                    {
                         hasPlayedEndAudio = true;
 
                         audioSource.clip = noChaiSound;
-
                         audioSource.Play();
+
+                        // Notify Object 2
+                        if (emily1 != null)
+                        {
+                            emily1.ListenForNoChai();
+                        }
 
 
                         // Try to get the script with the specified name
