@@ -20952,8 +20952,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1110319829}
-  - component: {fileID: 1110319831}
   - component: {fileID: 1110319830}
+  - component: {fileID: 1110319831}
   m_Layer: 0
   m_Name: emily
   m_TagString: Untagged
@@ -20970,7 +20970,7 @@ Transform:
   m_GameObject: {fileID: 1110319828}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 0.02, z: -10.04}
+  m_LocalPosition: {x: 10.2, y: 0.02, z: -29.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20988,13 +20988,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1d2b6748233abd04a944e05c58a6aee2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.954
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 156
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -21079,15 +21079,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110319828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a321bfaebdce70d43bc31a0d86db5a8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 757ceac1fef05604ebc1fe32fa62d3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 584226295}
   audioSource: {fileID: 1110319830}
-  moveAndPlayAudioClip: {fileID: 8300000, guid: 1d2b6748233abd04a944e05c58a6aee2,
-    type: 3}
-  targetLocation: {fileID: 584226295}
+  speed: 30
 --- !u!1001 &1130537280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23578,7 +23577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1488804314}
   noChaiSound: {fileID: 8300000, guid: b8d2fe13d3f07114ea0bdc4a509c10ff, type: 3}
-  emily1: {fileID: 0}
   initialVoiceClips:
   - {fileID: 8300000, guid: b0e963700b3477e428f81c4a05d501fc, type: 3}
   - {fileID: 8300000, guid: 362a794d3f3b69343a44da247d14107b, type: 3}
@@ -23597,6 +23595,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 243bc4829148dae4991857d4ffc25d23, type: 3}
   moveSpeed: 0.65
   foig: {fileID: 2039540857}
+  emily: {fileID: 1110319828}
 --- !u!65 &1488804307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23722,7 +23721,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.48
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23766,7 +23765,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

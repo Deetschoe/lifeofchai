@@ -6,7 +6,6 @@ public class npcinteraction : MonoBehaviour
 {
     public AudioSource audioSource; // Single AudioSource for playing clips
     public AudioClip noChaiSound; // Array of initial voice clips
-    public emily1 emily1;
 
     public AudioClip[] initialVoiceClips; // Array of initial voice clips
     public AudioClip[] secondVoiceClips; // Array of second voice clips
@@ -29,7 +28,10 @@ public class npcinteraction : MonoBehaviour
     private bool isMovingToTargetZ = false; // Initially not moving in the Z direction
     private GameObject cup; // To keep track of the cup GameObject
 
+
     public GameObject foig; // To keep track of the cup GameObject
+
+    public GameObject emily;
 
 
     private Vector3 originalPosition; // Original position of the NPC
@@ -190,11 +192,7 @@ public class npcinteraction : MonoBehaviour
                         audioSource.clip = noChaiSound;
                         audioSource.Play();
 
-                        // Notify Object 2
-                        if (emily1 != null)
-                        {
-                            emily1.ListenForNoChai();
-                        }
+
 
 
                         // Try to get the script with the specified name
@@ -205,6 +203,8 @@ public class npcinteraction : MonoBehaviour
                             // Enable the script or perform any other actions
                             script.enabled = true;
                         }
+
+                        StartCoroutine(EnableScriptAfterDelay());
                     }
 
 
@@ -218,6 +218,21 @@ public class npcinteraction : MonoBehaviour
             }
         }
         return false;
+    }
+
+    IEnumerator EnableScriptAfterDelay()
+    {
+        // Wait for 20 seconds
+        yield return new WaitForSeconds(20);
+
+        // Now that 20 seconds have passed, try to get and enable the script
+        emilyApproaches script2 = emily.GetComponent<emilyApproaches>();
+
+        if (script2 != null)
+        {
+            // Enable the script or perform any other actions
+            script2.enabled = true;
+        }
     }
 
     // Reset the NPC for the next interaction
