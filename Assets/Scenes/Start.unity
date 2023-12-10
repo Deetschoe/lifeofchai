@@ -25582,6 +25582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1488804314}
+  noChaiSound: {fileID: 8300000, guid: 082f5f44035d9477c9d27221fae839bc, type: 3}
   initialVoiceClips:
   - {fileID: 8300000, guid: b0e963700b3477e428f81c4a05d501fc, type: 3}
   - {fileID: 8300000, guid: 362a794d3f3b69343a44da247d14107b, type: 3}
