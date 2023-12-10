@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -835,6 +835,7 @@ GameObject:
   - component: {fileID: 688711833}
   - component: {fileID: 688711832}
   - component: {fileID: 688711835}
+  - component: {fileID: 688711836}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -960,6 +961,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &688711836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688711831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7047fe7cec878471488a8e58fef4bcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObject: {fileID: 63970994}
+  relativeMinBounds: {x: -0.6, y: -1, z: -1.3}
+  relativeMaxBounds: {x: 0.6, y: 0.8, z: 0}
 --- !u!1 &1223701383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1578,7 @@ GameObject:
   - component: {fileID: 1833003801}
   - component: {fileID: 1833003800}
   - component: {fileID: 1833003799}
+  - component: {fileID: 1833003803}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1797,6 +1814,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1833003803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833003797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7047fe7cec878471488a8e58fef4bcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObject: {fileID: 63970994}
+  relativeMinBounds: {x: -0.6, y: -1, z: -1.3}
+  relativeMaxBounds: {x: 0.6, y: 0.8, z: 0}
 --- !u!1 &1948816292
 GameObject:
   m_ObjectHideFlags: 0
