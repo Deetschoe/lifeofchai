@@ -20986,7 +20986,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1d2b6748233abd04a944e05c58a6aee2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b8248eb07f382684eb454ff194716fca, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -20998,7 +20998,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -32201,8 +32201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4247f52f15f0704b82126a4e88a8579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFogDensity: 3
-  fogDuration: 45
+  targetFogDensity: 23
+  fogDuration: 70
   targetParticleSystem: {fileID: 237883771}
   maxStartLifetime: 11
   maxParticles: 255
