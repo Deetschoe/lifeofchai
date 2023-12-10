@@ -5,6 +5,8 @@ using UnityEngine;
 public class npcinteraction : MonoBehaviour
 {
     public AudioSource audioSource; // Single AudioSource for playing clips
+    public AudioClip noChaiSound; // Array of initial voice clips
+
     public AudioClip[] initialVoiceClips; // Array of initial voice clips
     public AudioClip[] secondVoiceClips; // Array of second voice clips
     public float moveSpeed = 0.5f; // Speed of movement
@@ -168,7 +170,18 @@ public class npcinteraction : MonoBehaviour
                     print("LiquidControl script not found on the cup GameObject");
                 }
 
-                return true;
+
+                if(liquidControl.liquidLevel == 0)
+                {
+                    audioSource.clip = noChaiSound;
+                    audioSource.Play();
+
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         return false;
