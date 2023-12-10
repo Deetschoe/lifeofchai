@@ -121,7 +121,7 @@ public class CarMovement : MonoBehaviour
     {
         if (hasLeftActiveArea)
         {
-            yield return new WaitForSeconds(Random.Range(1f, 120f));
+            yield return new WaitForSeconds(Random.Range(1f, 60f));
             Debug.Log("Reactivating the car");
             gameObject.SetActive(true);
             transform.position = startPoint;
