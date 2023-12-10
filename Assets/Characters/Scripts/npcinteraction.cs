@@ -159,14 +159,7 @@ public class npcinteraction : MonoBehaviour
         {
             if (hitCollider.gameObject.CompareTag("cup"))
             {
-                // Try to get the script with the specified name
-                EnvironmentAndParticleSystemController script = foig.GetComponent<EnvironmentAndParticleSystemController>();
 
-                if (script != null)
-                {
-                    // Enable the script or perform any other actions
-                    script.enabled = true;
-                }
 
 
                 cup = hitCollider.gameObject; // Keep a reference to the cup
@@ -189,6 +182,17 @@ public class npcinteraction : MonoBehaviour
                 {
                     audioSource.clip = noChaiSound;
                     audioSource.Play();
+
+
+                    // Try to get the script with the specified name
+                    EnvironmentAndParticleSystemController script = foig.GetComponent<EnvironmentAndParticleSystemController>();
+
+                    if (script != null)
+                    {
+                        // Enable the script or perform any other actions
+                        script.enabled = true;
+                    }
+
 
                     return false;
                 }
