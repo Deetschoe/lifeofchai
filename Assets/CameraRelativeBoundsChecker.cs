@@ -5,15 +5,19 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
     public Transform parentObject; // Parent GameObject
     public Vector3 relativeMinBounds; // Relative to the parent object
     public Vector3 relativeMaxBounds;
+    public float fadeSpeed = 1f; // Speed of the fade effect
 
     private Camera cameraComponent; // Camera component
     private Vector3 actualMinBounds;
     private Vector3 actualMaxBounds;
+    private Color originalClearColor;
+    private Color targetColor = Color.black; // Target color when out of bounds
 
     void Start()
     {
-        UpdateBounds();
         cameraComponent = GetComponent<Camera>(); // Get the camera component
+        UpdateBounds();
+        originalClearColor = cameraComponent.backgroundColor; // Store the original clear color
 
         // Initialize camera position at the center of the bounds
         Vector3 centerPosition = (actualMinBounds + actualMaxBounds) / 2;
@@ -22,27 +26,23 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
 
     void Update()
     {
-        CheckBounds();
+        UpdateCameraFade();
     }
 
-    void CheckBounds()
+    void UpdateCameraFade()
     {
-        if (transform.position.x < actualMinBounds.x || transform.position.x > actualMaxBounds.x ||
-            transform.position.y < actualMinBounds.y || transform.position.y > actualMaxBounds.y ||
-            transform.position.z < actualMinBounds.z || transform.position.z > actualMaxBounds.z)
-        {
-            if (cameraComponent.enabled)
-            {
-                cameraComponent.enabled = false; // Disable the camera if it's out of bounds
-            }
-        }
-        else
-        {
-            if (!cameraComponent.enabled)
-            {
-                cameraComponent.enabled = true; // Enable the camera if it's within bounds
-            }
-        }
+        bool isWithinBounds = IsWithinBounds(transform.position);
+        Color targetClearColor = isWithinBounds ? originalClearColor : targetColor;
+        cameraComponent.backgroundColor = Color.Lerp(cameraComponent.backgroundColor, targetClearColor, fadeSpeed * Time.deltaTime);
+    }
+
+    bool IsWithinBounds(Vector3 position)
+    {
+        // Convert the position to the local space of the parent
+        Vector3 localPos = parentObject.InverseTransformPoint(position);
+        return localPos.x >= relativeMinBounds.x && localPos.x <= relativeMaxBounds.x &&
+               localPos.y >= relativeMinBounds.y && localPos.y <= relativeMaxBounds.y &&
+               localPos.z >= relativeMinBounds.z && localPos.z <= relativeMaxBounds.z;
     }
 
     void OnDrawGizmos()
@@ -55,17 +55,15 @@ public class CameraRelativeBoundsChecker : MonoBehaviour
         // Set the color of the Gizmo
         Gizmos.color = Color.green;
 
-        // Calculate the center and size of the Gizmo box
-        Vector3 center = (actualMinBounds + actualMaxBounds) / 2;
-        Vector3 size = actualMaxBounds - actualMinBounds;
-
         // Draw the wireframe box
-        Gizmos.DrawWireCube(center, size);
+        Gizmos.matrix = Matrix4x4.TRS(parentObject.position, parentObject.rotation, parentObject.localScale);
+        Gizmos.DrawWireCube((relativeMinBounds + relativeMaxBounds) / 2, relativeMaxBounds - relativeMinBounds);
     }
 
     void UpdateBounds()
     {
-        actualMinBounds = parentObject.position + Vector3.Scale(relativeMinBounds, parentObject.localScale);
-        actualMaxBounds = parentObject.position + Vector3.Scale(relativeMaxBounds, parentObject.localScale);
+        // Transform the bounds from local space of the parent to world space
+        actualMinBounds = parentObject.TransformPoint(relativeMinBounds);
+        actualMaxBounds = parentObject.TransformPoint(relativeMaxBounds);
     }
 }
