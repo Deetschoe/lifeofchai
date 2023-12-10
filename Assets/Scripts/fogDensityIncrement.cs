@@ -13,6 +13,10 @@ public class EnvironmentAndParticleSystemController : MonoBehaviour
     public int maxParticles = 1000; // Maximum number of particles
     public float maxSimulationSpeed = 100f; // Maximum simulation speed
 
+
+    public float targetAmbientLightIntensity = 0.0f; // The target ambient light intensity (complete darkness)
+    public float ambientLightDuration = 30.0f; // Duration over which ambient light intensity decreases
+
     private float initialFogDensity;
     private float initialStartLifetime;
     private int initialMaxParticles;

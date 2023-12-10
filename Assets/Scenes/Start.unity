@@ -20943,6 +20943,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquidObject: {fileID: 260498513}
   liquidLevel: 0
+--- !u!1 &1110319828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110319829}
+  m_Layer: 0
+  m_Name: emily
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110319829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110319828}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.15, y: 0.02, z: -1.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1130537280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23411,6 +23442,7 @@ GameObject:
   - component: {fileID: 1488804307}
   - component: {fileID: 1488804306}
   - component: {fileID: 1488804313}
+  - component: {fileID: 1488804315}
   - component: {fileID: 1488804314}
   m_Layer: 0
   m_Name: NPC
@@ -23660,6 +23692,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1488804315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488804305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dff8444ae8c65f4fb4d25b65900509e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1496310206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32062,6 +32106,8 @@ MonoBehaviour:
   maxStartLifetime: 11
   maxParticles: 255
   maxSimulationSpeed: 111
+  targetAmbientLightIntensity: 0
+  ambientLightDuration: 30
 --- !u!4 &2039540859
 Transform:
   m_ObjectHideFlags: 0
@@ -37877,6 +37923,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1110319829}
   - {fileID: 2039540859}
   - {fileID: 584226295}
   - {fileID: 343430114}
