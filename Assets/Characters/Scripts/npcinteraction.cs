@@ -186,6 +186,7 @@ public class npcinteraction : MonoBehaviour
                         hasPlayedEndAudio = true;
 
                         audioSource.clip = noChaiSound;
+
                         audioSource.Play();
 
 
