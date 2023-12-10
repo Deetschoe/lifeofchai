@@ -23,6 +23,10 @@ public class npcinteraction : MonoBehaviour
     private bool isMovingToTargetX = true; // Initially moving in the X direction
     private bool isMovingToTargetZ = false; // Initially not moving in the Z direction
     private GameObject cup; // To keep track of the cup GameObject
+
+    public GameObject foig; // To keep track of the cup GameObject
+
+
     private Vector3 originalPosition; // Original position of the NPC
 
     // Event to notify when NPC interaction is complete
@@ -155,6 +159,16 @@ public class npcinteraction : MonoBehaviour
         {
             if (hitCollider.gameObject.CompareTag("cup"))
             {
+                // Try to get the script with the specified name
+                EnvironmentAndParticleSystemController script = foig.GetComponent<EnvironmentAndParticleSystemController>();
+
+                if (script != null)
+                {
+                    // Enable the script or perform any other actions
+                    script.enabled = true;
+                }
+
+
                 cup = hitCollider.gameObject; // Keep a reference to the cup
 
                 // Get the LiquidControl script attached to the cup
