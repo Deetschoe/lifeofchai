@@ -23450,6 +23450,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 81b8a188612bf9745935e97a6fc01d9e, type: 3}
   - {fileID: 8300000, guid: 243bc4829148dae4991857d4ffc25d23, type: 3}
   moveSpeed: 0.65
+  foig: {fileID: 2039540857}
 --- !u!65 &1488804307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32050,7 +32051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039540857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4247f52f15f0704b82126a4e88a8579, type: 3}
   m_Name: 
