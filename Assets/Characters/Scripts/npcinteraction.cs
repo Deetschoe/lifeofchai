@@ -20,6 +20,10 @@ public class npcinteraction : MonoBehaviour
     private float currentLerpTimeZ = 0f; // Current interpolation time for Z-axis movement
     private bool hasPlayedInitialAudio = false; // To ensure the first audio is played only once
     private bool hasPlayedSecondAudio = false; // To ensure the second audio is played only once
+
+    private bool hasPlayedEndAudio = false; // To ensure the second audio is played only once
+
+
     private bool isMovingToTargetX = true; // Initially moving in the X direction
     private bool isMovingToTargetZ = false; // Initially not moving in the Z direction
     private GameObject cup; // To keep track of the cup GameObject
@@ -160,8 +164,6 @@ public class npcinteraction : MonoBehaviour
             if (hitCollider.gameObject.CompareTag("cup"))
             {
 
-
-
                 cup = hitCollider.gameObject; // Keep a reference to the cup
 
                 // Get the LiquidControl script attached to the cup
@@ -180,18 +182,23 @@ public class npcinteraction : MonoBehaviour
 
                 if(liquidControl.liquidLevel == 0)
                 {
-                    audioSource.clip = noChaiSound;
-                    audioSource.Play();
+                    if (hasPlayedEndAudio == false) {
+                        hasPlayedEndAudio = true;
+
+                        audioSource.clip = noChaiSound;
+                        audioSource.Play();
 
 
-                    // Try to get the script with the specified name
-                    EnvironmentAndParticleSystemController script = foig.GetComponent<EnvironmentAndParticleSystemController>();
+                        // Try to get the script with the specified name
+                        EnvironmentAndParticleSystemController script = foig.GetComponent<EnvironmentAndParticleSystemController>();
 
-                    if (script != null)
-                    {
-                        // Enable the script or perform any other actions
-                        script.enabled = true;
+                        if (script != null)
+                        {
+                            // Enable the script or perform any other actions
+                            script.enabled = true;
+                        }
                     }
+
 
 
                     return false;
