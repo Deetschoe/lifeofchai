@@ -1,73 +1,54 @@
-using System.Collections;
 using UnityEngine;
 
-public class AudioAndMove : MonoBehaviour
+public class emily1 : MonoBehaviour
 {
-    public AudioSource audioSource; // Reference to the AudioSource component
-    public AudioClip noChaiSound; // Audio clip to play when triggered
-    public float moveSpeed = 2.0f; // Speed of movement
+    public AudioSource audioSource;
+    public AudioClip moveAndPlayAudioClip;
+    public Transform targetLocation;
 
-    private bool isMoving = false; // Flag to track if the GameObject is currently moving
+    private bool heardNoChai = false;
+    private bool hasMoved = false;
+    private float timer = 0f;
 
-    // Target position coordinates
-    public float targetX = 0f; // X coordinate of the target position
-    public float targetY = 0f; // Y coordinate of the target position
-    public float targetZ = 0f; // Z coordinate of the target position
-
-    // Method to trigger audio playback and movement
-    public void PlayAudioAndMove()
+    void Update()
     {
-        if (!isMoving)
+        if (heardNoChai && !hasMoved)
         {
-            // Check the liquid level of the cup
-            float liquidLevel = GetLiquidLevel();
-
-            if (liquidLevel == 0)
+            timer += Time.deltaTime;
+            if (timer >= 20f)
             {
-                StartCoroutine(PlayAudioAndMoveCoroutine());
+                MoveToTargetLocation();
+                hasMoved = true;
             }
         }
     }
 
-    // Coroutine to play audio and move the GameObject
-    private IEnumerator PlayAudioAndMoveCoroutine()
+    public void ListenForNoChai()
     {
-        // Play the audio clip
-        if (audioSource != null && noChaiSound != null)
-        {
-            audioSource.clip = noChaiSound;
-            audioSource.Play();
-
-            // Log a message when the audio source starts playing
-            Debug.Log("Audio Source is playing.");
-        }
-
-        // Move the GameObject towards the target position
-        float startTime = Time.time;
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = new Vector3(targetX, targetY, targetZ);
-
-        while (transform.position != endPosition)
-        {
-            float journeyLength = Vector3.Distance(startPosition, endPosition);
-            float journeyTime = journeyLength / moveSpeed;
-            float distanceCovered = (Time.time - startTime) * moveSpeed;
-            float fractionOfJourney = distanceCovered / journeyLength;
-            transform.position = Vector3.Lerp(startPosition, endPosition, fractionOfJourney);
-
-            yield return null;
-        }
-
-        // Ensure the GameObject reaches the exact target position
-        transform.position = endPosition;
-        isMoving = false;
+        // This function should be called to set heardNoChai to true.
+        // Implementation depends on how "nochai" audio is detected.
+        heardNoChai = true;
     }
 
-    // Simulate the method to get the liquid level from the cup (replace this with your actual logic)
-    private float GetLiquidLevel()
+    private void MoveToTargetLocation()
     {
-        // Replace this with your logic to obtain the actual liquid level
-        // For demonstration purposes, return 0 for now
-        return 0;
+        if (targetLocation != null)
+        {
+            // Play audio if available
+            if (moveAndPlayAudioClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(moveAndPlayAudioClip);
+            }
+
+            // Move Object 2 to target location
+            transform.position = targetLocation.position;
+            transform.rotation = targetLocation.rotation;
+        }
+    }
+
+    // Optional: Call this method to set a new target location from other scripts
+    public void SetTargetLocation(Transform newTargetLocation)
+    {
+        targetLocation = newTargetLocation;
     }
 }
