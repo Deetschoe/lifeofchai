@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class npcinteraction : MonoBehaviour
 {
@@ -220,9 +221,10 @@ public class npcinteraction : MonoBehaviour
         return false;
     }
 
+
     IEnumerator EnableScriptAfterDelay()
     {
-        // Wait for 20 seconds
+        // Wait for the initial 20 seconds
         yield return new WaitForSeconds(20);
 
         // Now that 20 seconds have passed, try to get and enable the script
@@ -230,10 +232,16 @@ public class npcinteraction : MonoBehaviour
 
         if (script2 != null)
         {
-            // Enable the script or perform any other actions
             script2.enabled = true;
         }
+
+        // Wait for an additional 10 seconds
+        yield return new WaitForSeconds(10);
+
+        // Now load the new scene
+        SceneManager.LoadScene("Rickshaw Run");
     }
+
 
     // Reset the NPC for the next interaction
     private void ResetNPC()
