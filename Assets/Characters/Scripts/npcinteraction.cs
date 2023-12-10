@@ -154,6 +154,20 @@ public class npcinteraction : MonoBehaviour
             if (hitCollider.gameObject.CompareTag("cup"))
             {
                 cup = hitCollider.gameObject; // Keep a reference to the cup
+
+                // Get the LiquidControl script attached to the cup
+                LiquidControl liquidControl = cup.GetComponent<LiquidControl>();
+
+                if (liquidControl != null)
+                {
+                    // Access and print the liquidLevel
+                    print("Liquid Level: " + liquidControl.liquidLevel);
+                }
+                else
+                {
+                    print("LiquidControl script not found on the cup GameObject");
+                }
+
                 return true;
             }
         }
