@@ -12,9 +12,12 @@ public class emily1 : MonoBehaviour
 
     void Update()
     {
+        // Check if the audio has been heard and the object has not yet moved
         if (heardNoChai && !hasMoved)
         {
             timer += Time.deltaTime;
+
+            // When timer reaches 20 seconds, move the object
             if (timer >= 20f)
             {
                 MoveToTargetLocation();
@@ -23,26 +26,26 @@ public class emily1 : MonoBehaviour
         }
     }
 
+    // Call this method to simulate hearing the "nochai" audio
     public void ListenForNoChai()
     {
-        // This function should be called to set heardNoChai to true.
-        // Implementation depends on how "nochai" audio is detected.
         heardNoChai = true;
     }
 
     private void MoveToTargetLocation()
     {
+        // Check if target location is assigned
         if (targetLocation != null)
         {
-            // Play audio if available
-            if (moveAndPlayAudioClip != null && audioSource != null)
+            // Move Object 2 to the target location
+            transform.position = targetLocation.position;
+            transform.rotation = targetLocation.rotation;
+
+            // Play audio if available and not already playing
+            if (moveAndPlayAudioClip != null && audioSource != null && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(moveAndPlayAudioClip);
             }
-
-            // Move Object 2 to target location
-            transform.position = targetLocation.position;
-            transform.rotation = targetLocation.rotation;
         }
     }
 

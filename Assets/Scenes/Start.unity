@@ -21085,11 +21085,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1110319830}
-  noChaiSound: {fileID: 8300000, guid: 1d2b6748233abd04a944e05c58a6aee2, type: 3}
-  moveSpeed: 2
-  targetX: 0.88
-  targetY: 0.46
-  targetZ: -1.33
+  moveAndPlayAudioClip: {fileID: 8300000, guid: 1d2b6748233abd04a944e05c58a6aee2,
+    type: 3}
+  targetLocation: {fileID: 0}
 --- !u!1001 &1130537280
 PrefabInstance:
   m_ObjectHideFlags: 0
