@@ -236,7 +236,7 @@ public class npcinteraction : MonoBehaviour
         }
 
         // Wait for an additional 10 seconds
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(16);
 
         // Now load the new scene
         SceneManager.LoadScene("Rickshaw");

@@ -1,16 +1,23 @@
 using UnityEngine;
+using System.Collections;
 
-public class RickshadwDrive : MonoBehaviour
+public class RickshawDrive : MonoBehaviour
 {
     public Transform[] waypoints;
     public float speed = 5.0f;
+    public float increasedSpeed = 10.0f; // New speed after contact
     public float turnSpeed = 1.0f;
-    public float maxBounceHeight = 0.5f; // Maximum possible height of the bounce
-    public float bounceSpeed = 2.0f; // Speed of the bouncing
+    public float maxBounceHeight = 0.5f;
+    public float bounceSpeed = 2.0f;
+    public GameObject leftHand;
+    public GameObject rightHand;
+    public GameObject stopButton;
 
     private int currentWaypointIndex = 0;
-    private float originalY; // Original y position of the car
-    private float currentBounceHeight; // Current height of the bounce
+    private float originalY;
+    private float currentBounceHeight;
+    private bool speedIncreased = false; // Flag to indicate if speed has been increased
+    private float proximityThreshold = 0.15f; // Threshold for hand proximity
 
     void Start()
     {
@@ -20,32 +27,42 @@ public class RickshadwDrive : MonoBehaviour
 
     void Update()
     {
+        if (!speedIncreased && (Vector3.Distance(leftHand.transform.position, stopButton.transform.position) < proximityThreshold ||
+            Vector3.Distance(rightHand.transform.position, stopButton.transform.position) < proximityThreshold))
+        {
+            StartCoroutine(IncreaseSpeedAfterDelay(6.0f)); // Increase speed after 6 seconds delay
+            speedIncreased = true;
+        }
+
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
             currentWaypointIndex++;
             if (currentWaypointIndex >= waypoints.Length)
             {
                 currentWaypointIndex = 0;
-                SetRandomBounceHeight(); // Set a new bounce height when waypoint changes
+                SetRandomBounceHeight();
             }
         }
 
         Vector3 moveDirection = waypoints[currentWaypointIndex].position - transform.position;
-        moveDirection.y = 0; // Ignore the y component for movement towards waypoint
+        moveDirection.y = 0;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection, speed * Time.deltaTime);
 
-        // Bounce effect with variable height
         float newY = originalY + Mathf.Sin(Time.time * bounceSpeed) * currentBounceHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
-        // Smooth turning
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
+    private IEnumerator IncreaseSpeedAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        speed = increasedSpeed;
+    }
+
     private void SetRandomBounceHeight()
     {
-        // Randomize the bounce height within a range, e.g., 50% to 100% of maxBounceHeight
         currentBounceHeight = Random.Range(maxBounceHeight * 0.5f, maxBounceHeight);
     }
 }
