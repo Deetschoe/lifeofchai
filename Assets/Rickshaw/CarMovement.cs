@@ -52,6 +52,7 @@ public class CarMovement : MonoBehaviour
 
                 // Start the respawn routine
                 StartCoroutine(ReactivateCarRoutine());
+
             }
             return;
         }

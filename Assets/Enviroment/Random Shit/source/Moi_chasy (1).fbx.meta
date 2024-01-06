@@ -3,7 +3,32 @@ guid: dd7e1bdde9848c14fb13ff78449c6e35
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Alarm
+    second: {fileID: 2100000, guid: 17ea4f21eef5f4290acbf3fa12d97eb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dial
+    second: {fileID: 2100000, guid: 17ea4f21eef5f4290acbf3fa12d97eb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 17ea4f21eef5f4290acbf3fa12d97eb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 17ea4f21eef5f4290acbf3fa12d97eb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u0441\u0442\u0440\u0435\u043B\u043A\u0438 \u0447"
+    second: {fileID: 2100000, guid: 17ea4f21eef5f4290acbf3fa12d97eb7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
