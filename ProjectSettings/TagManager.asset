@@ -15,8 +15,6 @@ TagManager:
   - grabbable
   - videoPlayer
   - Mine
-  - hand
-  - pouchable
   layers:
   - Default
   - TransparentFX

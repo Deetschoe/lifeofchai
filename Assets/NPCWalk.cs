@@ -1,35 +1,30 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class NPCGuide : MonoBehaviour
+
+public class NPCWalk : MonoBehaviour
 {
     public Transform player;
     public List<Transform> checkpoints;
     private int currentCheckpointIndex = 0;
-    private float proximityThreshold = 2f;
-    private Animator animator; // Animator reference
-    void Start()
-    {
-        // Get the Animator component attached to this GameObject
-        animator = GetComponent<Animator>();
-    }
+    private float proximityThreshold = 1.5f;
+
     void Update()
     {
         if (currentCheckpointIndex < checkpoints.Count)
         {
-            bool isMoving = MoveToCurrentCheckpoint();
+            MoveToCurrentCheckpoint();
             CheckPlayerProximity();
-            // Update the animator's IsWalking parameter
-            animator.SetBool("IsWalking", isMoving);
         }
     }
-    bool MoveToCurrentCheckpoint()
+
+    void MoveToCurrentCheckpoint()
     {
+        // Add movement logic here. For example, simple direct movement:
         Transform currentCheckpoint = checkpoints[currentCheckpointIndex];
-        Vector3 startPosition = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, currentCheckpoint.position, Time.deltaTime);
-        // Check if the position has changed to determine if the character is moving
-        return startPosition != transform.position;
+        // You can replace this with more sophisticated pathfinding logic if necessary.
     }
+
     void CheckPlayerProximity()
     {
         if (Vector3.Distance(player.position, checkpoints[currentCheckpointIndex].position) < proximityThreshold)
