@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections; // This is the missing namespace
+using System.Collections;
 
 public class BallSpawnCreature : MonoBehaviour
 {
@@ -35,7 +35,8 @@ public class BallSpawnCreature : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!hasCollided)
+        // Check if the ball collides with an object tagged as "ground"
+        if (!hasCollided && collision.gameObject.CompareTag("ground"))
         {
             hasCollided = true;
             rb.useGravity = false;

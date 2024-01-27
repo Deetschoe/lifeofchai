@@ -4,33 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - chaiRay
-  - fire
-  - pot
-  - cup
-  - Contact
-  - npc
-  - teacher
-  - paper
-  - grabbable
-  - videoPlayer
-  - Mine
-<<<<<<< HEAD
-  - Meteor
   - tamed
   - untamed
-=======
   - hand
   - pouchable
->>>>>>> parent of 4d446b4 (Revert "life good")
+  - ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Pot
+  - 
   - Water
   - UI
-  - Paper
+  - 
   - 
   - 
   - 
