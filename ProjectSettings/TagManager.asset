@@ -15,9 +15,14 @@ TagManager:
   - grabbable
   - videoPlayer
   - Mine
+<<<<<<< HEAD
   - Meteor
   - tamed
   - untamed
+=======
+  - hand
+  - pouchable
+>>>>>>> parent of 4d446b4 (Revert "life good")
   layers:
   - Default
   - TransparentFX
