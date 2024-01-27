@@ -11,9 +11,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: bde0983d8af2469469b802bf5b997a54
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Rickshaw.unity
     guid: b7e655eaca4117d4390451ecf5b84972
+  - enabled: 1
+    path: Assets/Scenes/School.unity
+    guid: bd7dbe985f86e334e853837bf1cd143c
+  - enabled: 1
+    path: Assets/Scenes/School2.unity
+    guid: 7c5bb58e5680fc54ca9b7268cea3c781
+  - enabled: 1
+    path: Assets/Scenes/GotYa.unity
+    guid: 0ec6f3a2f51a4ba4b96b6c8e8b5a26bd
+  - enabled: 1
+    path: Assets/Scenes/Placeholder.unity
+    guid: 41fb36043bb45df41b680fc76bea7fb5
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c6fb14a7eeac21c4caeafb9b7f4c2a04,
       type: 2}

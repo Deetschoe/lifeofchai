@@ -10,6 +10,11 @@ TagManager:
   - cup
   - Contact
   - npc
+  - teacher
+  - paper
+  - grabbable
+  - videoPlayer
+  - Mine
   layers:
   - Default
   - TransparentFX
@@ -17,7 +22,7 @@ TagManager:
   - Pot
   - Water
   - UI
-  - 
+  - Paper
   - 
   - 
   - 

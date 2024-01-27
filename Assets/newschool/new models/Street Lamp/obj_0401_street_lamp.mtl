@@ -1,0 +1,20 @@
+# Material file for obj_0401_street_lamp.obj
+
+newmtl tex_0401_obj_light
+	Ns -1
+	d 1
+	illum 2
+	Kd 0.64 0.64 0.64
+	Ks 0.5 0.5 0.5
+	Ka 1.0 1.0 1.0
+	map_Kd tex_0401_obj_light.png
+
+newmtl tex_0401_obj_streetlamp
+	Ns -1
+	d 1
+	illum 2
+	Kd 0.64 0.64 0.64
+	Ks 0.5 0.5 0.5
+	Ka 1.0 1.0 1.0
+	map_Kd tex_0401_obj_streetlamp.png
+

@@ -1,0 +1,24 @@
+newmtl c5house1a
+Ka 0.7843137 0.7843137 0.7843137
+Kd 0.972549 0.972549 0.972549
+d 1
+Tr 1
+map_Ka c5house1a.png
+map_Kd c5house1a.png
+map_d c5house1a.png
+newmtl c5house1b
+Ka 0.7843137 0.7843137 0.7843137
+Kd 0.972549 0.972549 0.972549
+d 1
+Tr 1
+map_Ka c5house1b.png
+map_Kd c5house1b.png
+map_d c5house1b.png
+newmtl h_kage
+Ka 0.972549 0.972549 0.972549
+Kd 0.7843137 0.7843137 0.7843137
+d 1
+Tr 1
+map_Ka h_kage.png
+map_Kd h_kage.png
+map_d h_kage.png
