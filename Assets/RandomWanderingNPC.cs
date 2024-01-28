@@ -28,7 +28,7 @@ public class RandomWanderingNPC : MonoBehaviour
         }
 
         // Increase the chance of pausing for visibility
-        if (!isPausing && Random.Range(0f, 1f) < 0.0005f) // 5% chance to pause
+        if (!isPausing && Random.Range(0f, 1f) < 0.005f) // 5% chance to pause
         {
             StartCoroutine(PauseMovement());
         }

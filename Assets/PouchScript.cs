@@ -96,14 +96,18 @@ public class PouchScript : MonoBehaviour
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();
 
-            rb.velocity = Vector3.zero;
-            rb.rotation = Quaternion.identity; // Resetting the rotation
+            if (rb != null)
+            {
+                Vector3 targetPosition = transform.position; // or some offset inside the pouch
+                                                             // Use MovePosition for smoother movement
+                rb.MovePosition(Vector3.Lerp(obj.position, targetPosition, Time.deltaTime * 10));
 
-            rb.angularVelocity = Vector3.zero;
-            obj.position = transform.position; // or some offset inside the pouch
+                // Resetting velocities
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
         }
     }
-
     private void SetPouchableObjectPhysics(Transform obj, bool useGravity)
     {
         Rigidbody rb = obj.GetComponent<Rigidbody>();
