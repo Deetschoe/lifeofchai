@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 8379765096393433211}
   - component: {fileID: 5118598513059925987}
   - component: {fileID: 5012991826925827568}
-  - component: {fileID: 5245309131586666012}
   - component: {fileID: 6420525013352328095}
   - component: {fileID: 5238989215944828107}
   - component: {fileID: 7620757315077287450}
@@ -202,7 +201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 543d9ce056da06e46a0d35af9b1d4a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,20 +244,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5245309131586666012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611804668830025472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646fb47b38933f74c8b496fb2b7ba6bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  detectionDistance: 2
 --- !u!114 &6420525013352328095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 108541549894800125}
-  entityName: Title
+  entityName: My Creature
   entityLevel: 5
 --- !u!114 &7620757315077287450
 MonoBehaviour:
@@ -303,7 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b330046a743644a3b9e67d2aeb3701e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 5
+  speed: 1.5
+  stoppingDistance: 1.5
+  attackCooldown: 1
 --- !u!95 &-6282119962895608070
 Animator:
   serializedVersion: 5

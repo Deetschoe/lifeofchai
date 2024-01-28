@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections; // This is the missing namespace
 
 public class BallSpawnCreature : MonoBehaviour
 {
@@ -35,21 +35,57 @@ public class BallSpawnCreature : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the ball collides with an object tagged as "ground"
-        if (!hasCollided && collision.gameObject.CompareTag("ground"))
+        // Check if the collision object has the tag "ground"
+        if (collision.gameObject.CompareTag("ground") && !hasCollided)
         {
             hasCollided = true;
+
             rb.useGravity = false;
             rb.isKinematic = true;
+
             Invoke(nameof(SpawnCreature), 1.0f); // Delay for creature spawning
+            Invoke(nameof(DeactivateBall), 3.0f); // Delay for ball removing
         }
     }
 
+
+
+    private void DeactivateBall()
+    {
+        gameObject.SetActive(false);
+    }
     private void SpawnCreature()
     {
         GameObject creature = Instantiate(creaturePrefab, transform.position, Quaternion.identity);
+
+        // Calculate half height of the creature
+        Renderer creatureRenderer = creature.GetComponent<Renderer>();
+        float halfHeight = 0;
+        if (creatureRenderer != null)
+        {
+            halfHeight = creatureRenderer.bounds.size.y / 2;
+        }
+        else
+        {
+            // Alternatively, use collider if renderer is not available
+            Collider creatureCollider = creature.GetComponent<Collider>();
+            if (creatureCollider != null)
+            {
+                halfHeight = creatureCollider.bounds.size.y / 2;
+            }
+        }
+
+        // Adjust the Y position
+        Vector3 adjustedPosition = creature.transform.position;
+        adjustedPosition.y = 0;
+        adjustedPosition.y += halfHeight;
+        creature.transform.position = adjustedPosition;
+
+        // Start scaling coroutine
         StartCoroutine(ScaleCreature(creature, Vector3.zero, Vector3.one, animationDuration));
+
     }
+
 
     private IEnumerator ScaleCreature(GameObject creature, Vector3 startScale, Vector3 endScale, float duration)
     {
