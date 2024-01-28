@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 108541549894800125}
   entityName: My Creature
-  entityLevel: 5
+  entityLevel: 1
 --- !u!114 &7620757315077287450
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class EntityLabelUpdater : MonoBehaviour
     public string entityName; // Variable to store the entity name
     public int entityLevel; // Variable to store the entity level
 
-    public void Start()
+    public void Update()
     {
         UpdateText();
     }

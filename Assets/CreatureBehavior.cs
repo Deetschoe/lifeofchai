@@ -7,7 +7,17 @@ public class MoveTowardsUntamed : MonoBehaviour
     public float stoppingDistance = 1f;
     public float attackCooldown = 1f;
     private float timeSinceLastAttack = 0f;
-
+    private int level = 1; // Initial level
+    private EntityLabelUpdater entityLabelUpdater;
+    void Start()
+    {
+        // Get the EntityLabelUpdater component from the same GameObject
+        entityLabelUpdater = GetComponent<EntityLabelUpdater>();
+        if (entityLabelUpdater == null)
+        {
+            Debug.LogError("EntityLabelUpdater component not found on the GameObject.");
+        }
+    }
     private GameObject FindClosestUntamed()
     {
         GameObject[] untamedObjects;
@@ -15,6 +25,8 @@ public class MoveTowardsUntamed : MonoBehaviour
         GameObject closest = null;
         float minDistance = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
+
+
 
         foreach (GameObject untamed in untamedObjects)
         {
@@ -32,6 +44,9 @@ public class MoveTowardsUntamed : MonoBehaviour
 
     void Update()
     {
+        // Update properties based on level
+        UpdatePropertiesBasedOnLevel();
+
         GameObject closestUntamed = FindClosestUntamed();
         if (closestUntamed != null)
         {
@@ -58,18 +73,45 @@ public class MoveTowardsUntamed : MonoBehaviour
         }
     }
 
+
+    void UpdatePropertiesBasedOnLevel()
+    {
+        speed = level;
+        stoppingDistance = level;
+        attackCooldown = 1f / level;
+    }
+
     void Attack(GameObject target)
     {
+
         HealthBarGradient health = target.GetComponent<HealthBarGradient>();
         if (health != null)
         {
-            int damage = Random.Range(0, 21); // Generates a random integer between 0 and 20
+            int maxDamage = level * 10;
+            int damage = Random.Range(0, maxDamage);
             health.currentHealth -= damage;
+
             if (health.currentHealth < 0)
             {
                 target.SetActive(false);
+                IncrementLevel(); // Increment level on successful elimination
             }
-            // Add any additional effects or checks here, e.g., if health reaches 0
+            // Add any additional effects or checks here
+        }
+    }
+
+    void IncrementLevel()
+    {
+        level++;
+        UpdateEntityLevelInLabelUpdater(); // Update EntityLevel in EntityLabelUpdater
+    }
+
+    void UpdateEntityLevelInLabelUpdater()
+    {
+        if (entityLabelUpdater != null)
+        {
+            // Assuming EntityLabelUpdater has a method or property to set the EntityLevel
+            entityLabelUpdater.entityLevel = level;
         }
     }
 }
