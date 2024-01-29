@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 6420525013352328095}
   - component: {fileID: 5238989215944828107}
   - component: {fileID: 7620757315077287450}
-  - component: {fileID: 9061917568781280386}
+  - component: {fileID: 7630502454891862695}
   m_Layer: 0
   m_Name: TamedCreature
   m_TagString: tamed
@@ -309,7 +309,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3876530ecc750c8498ed9b59db9f3c84, type: 3}
   - {fileID: 8300000, guid: 7bb41ca713b4de74d97302393761cb97, type: 3}
   - {fileID: 8300000, guid: e1de3b1df495b0243b6bcb7222742101, type: 3}
---- !u!82 &9061917568781280386
+--- !u!82 &7630502454891862695
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,7 +321,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.507
+  m_Volume: 0.69
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -365,7 +365,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.579
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
