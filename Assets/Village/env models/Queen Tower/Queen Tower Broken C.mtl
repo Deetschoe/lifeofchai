@@ -1,0 +1,35 @@
+# Blender 3.4.1 MTL File: 'Queen Tower.blend'
+# www.blender.org
+
+newmtl QJailBrickTiling_XXX_Mat_INST
+Ns 250.000000
+Ka 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd QJailBrickTiling_DM.png
+map_Ks QJailBrickTiling_SM.png
+map_Bump -bm 1.000000 QJailBrickTiling_NM.png
+
+newmtl QueenTower_StoneA_XTX_Mat_INST_2
+Ns 250.000000
+Ka 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd QueenTower_StoneA_DM.png
+map_Ks QueenTower_StoneA_SM.png
+map_Bump -bm 1.000000 QueenTower_StoneA_NM.png
+
+newmtl QueenTower_StoneB_AXX_Mat_INST_2
+Ns 250.000000
+Ka 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd QueenTower_StoneB_DMA.png
+map_Ks QueenTower_StoneB_SM.png
+map_Bump -bm 1.000000 QueenTower_StoneB_NM.png

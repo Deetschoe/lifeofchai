@@ -1,0 +1,11 @@
+Extracted from the stage .bin.gz files using Steven's Gas Machine (xentax.exe) Textures using Switch Toolbox.
+
+Tools
+Steven's Gas Machine 2018-02-23 (xentax) by semory? on the xnalara.org fourms *extacting files out of .bin.gz files.*
+Noesis plugin by Joschuka (fmt_g1m) on Github *needed to read g1m models when xentax .obj exported models are broken.*
+Switch-Toolbox by KillzXGaming on Github *To extract textures from the .bin.gz files.*
+Blender 2.79 or 2.78
+
+Thanks to the above and whoever had the 200IQ to use web.archive and back up the old facepunch fourm thread about Hyrule Warriors model extraction that I found by luck.
+
+AJD-262
