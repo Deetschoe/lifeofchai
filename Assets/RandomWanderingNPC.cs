@@ -18,6 +18,7 @@ public class RandomWanderingNPC : MonoBehaviour
         ChooseNewDirection();
         animator = GetComponent<Animator>(); // Initialize the Animator component
     }
+
     void Update()
     {
         MoveObject();
@@ -27,13 +28,11 @@ public class RandomWanderingNPC : MonoBehaviour
             ChooseNewDirection();
         }
 
-        // Increase the chance of pausing for visibility
         if (!isPausing && Random.Range(0f, 1f) < 0.005f) // 5% chance to pause
         {
             StartCoroutine(PauseMovement());
         }
 
-        // Update animation state
         animator.SetBool("IsMoving", moveSpeed > 0 && !isPausing);
     }
 
@@ -43,7 +42,6 @@ public class RandomWanderingNPC : MonoBehaviour
         float currentSpeed = moveSpeed;
         moveSpeed = 0;
 
-        // Update animation state to idle
         animator.SetBool("IsMoving", false);
 
         yield return new WaitForSeconds(Random.Range(0.1f, 1f));
@@ -51,21 +49,21 @@ public class RandomWanderingNPC : MonoBehaviour
         moveSpeed = currentSpeed;
         isPausing = false;
 
-        // Update animation state to moving (if applicable)
         animator.SetBool("IsMoving", moveSpeed > 0);
     }
-
 
     void MoveObject()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, randomDirection, out hit, detectionDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionDistance) && hit.collider.CompareTag("wall"))
         {
-            ChooseNewDirection();
+            // Wall detected, move away from the wall
+            MoveAwayFromWall(hit);
         }
         else
         {
-            transform.Translate(randomDirection * moveSpeed * Time.deltaTime);
+            // No wall, proceed with movement
+            transform.Translate(randomDirection * moveSpeed * Time.deltaTime, Space.World);
 
             if (Vector3.Distance(startPosition, transform.position) > 12.5f)
             {
@@ -75,14 +73,20 @@ public class RandomWanderingNPC : MonoBehaviour
         }
     }
 
+    void MoveAwayFromWall(RaycastHit hit)
+    {
+        Vector3 awayFromWall = transform.position - hit.point;
+        awayFromWall.y = 0; // Ensure movement is only in the horizontal plane
+        randomDirection = awayFromWall.normalized;
+
+        transform.rotation = Quaternion.LookRotation(randomDirection);
+    }
+
     void ChooseNewDirection()
     {
         randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         changeDirectionTime = Time.time + Random.Range(3f, 12f);
 
-        // Rotate to face the new direction
         transform.rotation = Quaternion.LookRotation(randomDirection);
     }
-
-
 }

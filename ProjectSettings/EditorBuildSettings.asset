@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Village.unity
-    guid: 569d7cf6d0928de4b8d13185a24db2d9
-  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: bde0983d8af2469469b802bf5b997a54
   - enabled: 0
@@ -29,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Placeholder.unity
     guid: 41fb36043bb45df41b680fc76bea7fb5
+  - enabled: 1
+    path: Assets/Scenes/Village.unity
+    guid: 569d7cf6d0928de4b8d13185a24db2d9
   - enabled: 1
     path: Assets/Village/ShroomScene.unity
     guid: da6c81bcf35e2e44e8ae21452b101ad8
