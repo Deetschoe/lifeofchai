@@ -5,11 +5,17 @@ public class BallSpawnCreature : MonoBehaviour
 {
     public GameObject creaturePrefab; // Assign your creature prefab here
     public float animationDuration = 2.0f; // Duration of the spawn animation
+    public AudioClip spawnSound; // Assign your audio clip here
+
     private Rigidbody rb;
     private bool hasCollided = false;
+    private AudioSource audioSource; // AudioSource component
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+
+
         rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -57,6 +63,12 @@ public class BallSpawnCreature : MonoBehaviour
     private void SpawnCreature()
     {
         GameObject creature = Instantiate(creaturePrefab, transform.position, Quaternion.identity);
+
+
+        if (audioSource != null && spawnSound != null)
+        {
+            audioSource.PlayOneShot(spawnSound);
+        }
 
         // Calculate half height of the creature
         Renderer creatureRenderer = creature.GetComponent<Renderer>();
