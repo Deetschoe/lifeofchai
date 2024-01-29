@@ -294,9 +294,21 @@ MonoBehaviour:
   attackCooldown: 1
   externalAnimator: {fileID: 6720468384765284960}
   attackSounds:
-  - {fileID: 8300000, guid: d4a46444bd4decf46a505bed6ab275f8, type: 3}
+  - {fileID: 8300000, guid: cf9d78b71bb44bd4aaa0a437949b04a4, type: 3}
+  - {fileID: 8300000, guid: bdb6d1914f47a624dab7443fe6ce6696, type: 3}
+  - {fileID: 8300000, guid: 04d723e6ae9d9b0478be495bc36d006e, type: 3}
+  - {fileID: 8300000, guid: ff81651edc8673246874532dad766967, type: 3}
   screamSounds:
-  - {fileID: 8300000, guid: a8ca133ee6797174eb39329a84fbc60d, type: 3}
+  - {fileID: 8300000, guid: ce626ba563a392c43ac5b7bf5db5da34, type: 3}
+  - {fileID: 8300000, guid: 872691e4c7ef2674381cfffa8db9f23d, type: 3}
+  - {fileID: 8300000, guid: 74f55d8e39ff2664a9bd346d2f04fdc8, type: 3}
+  - {fileID: 8300000, guid: de72627edff633f4a9fb3a1b5adade9e, type: 3}
+  - {fileID: 8300000, guid: cabd4daef9f092f4088295041a985e49, type: 3}
+  - {fileID: 8300000, guid: f21a5d3539f32734cb96c27450b87cce, type: 3}
+  - {fileID: 8300000, guid: c6655b5b29221044bb3b6f15127154f6, type: 3}
+  - {fileID: 8300000, guid: 3876530ecc750c8498ed9b59db9f3c84, type: 3}
+  - {fileID: 8300000, guid: 7bb41ca713b4de74d97302393761cb97, type: 3}
+  - {fileID: 8300000, guid: e1de3b1df495b0243b6bcb7222742101, type: 3}
 --- !u!82 &9061917568781280386
 AudioSource:
   m_ObjectHideFlags: 0
@@ -319,7 +331,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 0.635
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
