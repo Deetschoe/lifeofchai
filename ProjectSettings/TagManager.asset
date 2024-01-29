@@ -9,6 +9,11 @@ TagManager:
   - hand
   - pouchable
   - ground
+  - Contact
+  - paper
+  - teacher
+  - videoPlayer
+  - wild
   layers:
   - Default
   - TransparentFX

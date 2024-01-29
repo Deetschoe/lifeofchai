@@ -1,0 +1,16 @@
+newmtl dol_body
+Ka 0 0 0
+Kd 0.972549 0.972549 0.972549
+d 1
+Tr 1
+map_Ka dol_body.png
+map_Kd dol_body.png
+map_d dol_body.png
+newmtl dol_face
+Ka 0 0 0
+Kd 0.972549 0.972549 0.972549
+d 1
+Tr 1
+map_Ka dol_face.png
+map_Kd dol_face.png
+map_d dol_face.png
