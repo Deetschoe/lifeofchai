@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PouchScript : MonoBehaviour
 {
     public float proximityThreshold = 1f;
-    private List<Transform> pouchableObjects = new List<Transform>();
+    public List<Transform> pouchableObjects = new List<Transform>();
     public AudioClip pouchSound; // Reference to the audio clip
     private AudioSource audioSource; // Audio source component
 
