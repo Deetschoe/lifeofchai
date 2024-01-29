@@ -12,7 +12,11 @@ public class MoveTowardsUntamed : MonoBehaviour
     public Animator externalAnimator;
 
     // Additions for audio
-    public AudioClip[] attackSounds; // Array of audio clips
+
+    // Array of audio clips for attack and scream sounds
+    public AudioClip[] attackSounds; // Attack sounds for this game object
+    public AudioClip[] screamSounds; // Scream sounds for untamed game objects
+
     private AudioSource audioSource; // AudioSource component
 
     // Animator component
@@ -20,17 +24,24 @@ public class MoveTowardsUntamed : MonoBehaviour
 
     void Start()
     {
+        // Initialize AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        // Ensure attackSounds array is not null
+        // Ensure arrays are not null
         if (attackSounds == null)
         {
             attackSounds = new AudioClip[0];
-            Debug.LogWarning("Attack sounds array is not initialized. No sounds will be played during attacks.");
+            Debug.LogWarning("Attack sounds array is not initialized.");
+        }
+
+        if (screamSounds == null)
+        {
+            screamSounds = new AudioClip[0];
+            Debug.LogWarning("Scream sounds array is not initialized.");
         }
 
         // Get the EntityLabelUpdater component from the same GameObject
@@ -114,25 +125,38 @@ public class MoveTowardsUntamed : MonoBehaviour
 
         if (health != null)
         {
+            // Play a random attack sound for this game object
             if (attackSounds.Length > 0)
             {
-                int randomIndex = Random.Range(0, attackSounds.Length);
-                audioSource.clip = attackSounds[randomIndex];
-                audioSource.Play();
+                AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
+                audioSource.PlayOneShot(attackClip);
             }
 
             StartCoroutine(AttackRoutine());
 
+            // Calculate and apply damage
             int maxDamage = level * 10;
             int damage = Random.Range(0, maxDamage);
             health.currentHealth -= damage;
-            print(health.currentHealth);
+
+            // Play a random scream sound on the target object
+            if (screamSounds.Length > 0)
+            {
+                AudioSource targetAudioSource = target.GetComponent<AudioSource>();
+                if (targetAudioSource == null)
+                {
+                    targetAudioSource = target.AddComponent<AudioSource>();
+                }
+
+                AudioClip screamClip = screamSounds[Random.Range(0, screamSounds.Length)];
+                targetAudioSource.PlayOneShot(screamClip);
+            }
+
             if (health.currentHealth < 0)
             {
                 target.SetActive(false);
                 IncrementLevel(); // Increment level on successful elimination
             }
-            // Add any additional effects or checks here
         }
     }
 

@@ -295,6 +295,8 @@ MonoBehaviour:
   externalAnimator: {fileID: 6720468384765284960}
   attackSounds:
   - {fileID: 8300000, guid: d4a46444bd4decf46a505bed6ab275f8, type: 3}
+  screamSounds:
+  - {fileID: 8300000, guid: a8ca133ee6797174eb39329a84fbc60d, type: 3}
 --- !u!82 &9061917568781280386
 AudioSource:
   m_ObjectHideFlags: 0
