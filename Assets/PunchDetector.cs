@@ -5,6 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PunchDetector : MonoBehaviour
 {
+    public GameObject holePrefab; // Assign this in the inspector with your hole prefab
+
     public GameObject leftHandController;
     public GameObject rightHandController;
     public GameObject objectToTeleport; // Object to teleport
@@ -37,6 +39,20 @@ public class PunchDetector : MonoBehaviour
         CheckForPunch(rightHandController);
     }
 
+
+private IEnumerator CreateHoleNextToObject(GameObject targetObject)
+{
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Determine the position for the hole. This example places the hole 1 unit to the right.
+    // Adjust the position as needed for your game's logic.
+    Vector3 holePosition = targetObject.transform.position + Vector3.right; // Adjust this vector as needed
+
+    // Instantiate the hole prefab at the calculated position
+    Instantiate(holePrefab, holePosition, Quaternion.identity);
+}
+
     private void CheckForPunch(GameObject handController)
     {
         // Fist detection logic (e.g., checking for input on the controller)
@@ -66,13 +82,16 @@ public class PunchDetector : MonoBehaviour
         }
     }
 
-    private void TeleportObjectTo(Vector3 position)
+private void TeleportObjectTo(Vector3 position)
+{
+    if (objectToTeleport != null)
     {
-        if (objectToTeleport != null)
-        {
-            objectToTeleport.transform.position = position;
-        }
+        objectToTeleport.transform.position = position;
+        // Start the coroutine to create a hole next to the object after 5 seconds
+        StartCoroutine(CreateHoleNextToObject(objectToTeleport));
     }
+}
+
 
     private void PlayPunchSound()
     {
