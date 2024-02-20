@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Castle.unity
     guid: c0277d7f142ba9649b866dc98823448c
+  - enabled: 1
+    path: Assets/Scenes/Waterfront.unity
+    guid: 71a08a4535f234b1aa055b21be978ba0
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c6fb14a7eeac21c4caeafb9b7f4c2a04,
       type: 2}
