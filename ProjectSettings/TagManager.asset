@@ -23,6 +23,8 @@ TagManager:
   - chaiRay
   - Enemy
   - Emily
+  - Ground
+  - Castle
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Post
   - 
   - 
   - 
