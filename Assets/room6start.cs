@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class TriggerInteraction : MonoBehaviour
 {
-    public AudioClip clip;         // Assign this in the Inspector
+    public AudioClip clip; // Assign this in the Inspector
     private AudioSource audioSource;
     public RuntimeAnimatorController animatorController; // To assign an Animator Controller
-    private Animator animator;     // The Animator component
-    public string animationName = "YourAnimationName"; // Set the name of your animation
+    private Animator animator; // The Animator component
 
     void Start()
     {
@@ -34,6 +33,12 @@ public class TriggerInteraction : MonoBehaviour
         {
             Debug.LogError("AudioSource component missing from this GameObject. Attach one.");
         }
+
+        // Initially set "inRoom6" to false
+        if (animator != null)
+        {
+            animator.SetBool("inRoom6", false); // Ensure this is the correct parameter name in your Animator
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -48,11 +53,29 @@ public class TriggerInteraction : MonoBehaviour
                 audioSource.Play();
             }
 
-            // Play the animation if the animator and animation name are properly assigned
-            if (animator != null && animator.runtimeAnimatorController != null && !string.IsNullOrEmpty(animationName))
+            // Set "inRoom6" to true to trigger the animation
+            if (animator != null)
             {
-                animator.SetBool(animationName, true); // Assuming it's a boolean trigger in your Animator
-                // Use animator.Play(animationName); if you want to play it directly without using parameters
+                animator.SetBool("inRoom6", true); // This will queue the animation based on your Animator's setup
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // Check if the exiting collider is tagged as Player
+        if (other.CompareTag("Player"))
+        {
+            // Stop the audio
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop(); // Use Stop() to completely stop the audio
+            }
+
+            // Optionally reset "inRoom6" to false if you want to reset the animation state
+            if (animator != null)
+            {
+                animator.SetBool("inRoom6", false); // This will reset the animation based on your Animator's setup
             }
         }
     }

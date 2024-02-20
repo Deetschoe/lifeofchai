@@ -1,40 +1,47 @@
 using UnityEngine;
-using System.Collections.Generic;
+
 public class NPCGuide : MonoBehaviour
 {
-    public Transform player;
-    public List<Transform> checkpoints;
-    private int currentCheckpointIndex = 0;
-    private float proximityThreshold = 2f;
+    private GameObject player; // Changed from public Transform player
+    private float followDistance = 2f; // The distance at which NPC starts following the player
     private Animator animator; // Animator reference
+    private float moveSpeed = 2f; // NPC move speed
+
     void Start()
     {
+        // Find the player GameObject by tag "Player"
+        player = GameObject.FindGameObjectWithTag("Player");
         // Get the Animator component attached to this GameObject
         animator = GetComponent<Animator>();
     }
+
     void Update()
     {
-        if (currentCheckpointIndex < checkpoints.Count)
+        // Calculate distance to the player
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        // Check if the NPC should start following the player
+        if (distanceToPlayer > followDistance)
         {
-            bool isMoving = MoveToCurrentCheckpoint();
-            CheckPlayerProximity();
-            // Update the animator's IsWalking parameter
-            animator.SetBool("IsWalking", isMoving);
+            // Move towards the player
+            MoveTowardsPlayer();
+        }
+        else
+        {
+            // Stop moving and update animation
+            animator.SetBool("IsWalking", false);
         }
     }
-    bool MoveToCurrentCheckpoint()
+
+    void MoveTowardsPlayer()
     {
-        Transform currentCheckpoint = checkpoints[currentCheckpointIndex];
-        Vector3 startPosition = transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, currentCheckpoint.position, Time.deltaTime);
-        // Check if the position has changed to determine if the character is moving
-        return startPosition != transform.position;
-    }
-    void CheckPlayerProximity()
-    {
-        if (Vector3.Distance(player.position, checkpoints[currentCheckpointIndex].position) < proximityThreshold)
-        {
-            currentCheckpointIndex++; // Move to the next checkpoint
-        }
+        // Move towards the player at moveSpeed
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+
+        // Always look at the player (optional)
+        transform.LookAt(player.transform.position);
+
+        // Check if the NPC has started moving towards the player
+        animator.SetBool("IsWalking", true);
     }
 }

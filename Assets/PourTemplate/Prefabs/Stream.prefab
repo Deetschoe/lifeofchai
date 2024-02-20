@@ -4854,7 +4854,7 @@ GameObject:
   - component: {fileID: 5238570228697279500}
   m_Layer: 0
   m_Name: Stream
-  m_TagString: Untagged
+  m_TagString: chaiRay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

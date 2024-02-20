@@ -16,6 +16,13 @@ TagManager:
   - wild
   - spawnHere
   - wall
+  - room1
+  - fire
+  - cup
+  - pot
+  - chaiRay
+  - Enemy
+  - Emily
   layers:
   - Default
   - TransparentFX

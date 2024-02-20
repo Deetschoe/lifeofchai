@@ -1,0 +1,30 @@
+# Created by Metasequoia
+
+newmtl bd
+Ka 0.00000 0.00000 0.00000
+Kd 0.50000 0.50000 0.50000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd nv_bd204_BM.tex.00.png
+
+newmtl eye
+Ka 0.00000 0.00000 0.00000
+Kd 0.50000 0.50000 0.50000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd nv_eye204_BM.tex.00.png
+
+newmtl head
+Ka 0.00000 0.00000 0.00000
+Kd 0.50000 0.50000 0.50000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd nv_head204_BM.tex.00.png
+
+newmtl mouth
+Ka 0.00000 0.00000 0.00000
+Kd 0.50000 0.50000 0.50000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd nv_mouth204_BM.tex.00.png
+

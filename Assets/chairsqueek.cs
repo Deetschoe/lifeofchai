@@ -1,29 +1,40 @@
 using UnityEngine;
 
-public class PlayAudioOnTrigger : MonoBehaviour
+public class PlayAudioInRoom : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioSource; // Assign in the Inspector
 
     void Start()
     {
-        // Try to get the AudioSource component attached to this GameObject.
-        audioSource = GetComponent<AudioSource>();
+        // Check if an AudioSource has been assigned
         if (audioSource == null)
         {
-            // If no AudioSource is found, log an error.
-            Debug.LogError("AudioSource component missing from this GameObject. Please attach one.");
+            Debug.LogError("AudioSource component not assigned. Please assign one in the inspector.");
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if the GameObject entering the trigger is tagged as "Player".
+        // Check if the GameObject entering the trigger is the player
         if (other.CompareTag("Player"))
         {
-            // Play the audio clip if it's not already playing.
-            if (!audioSource.isPlaying)
+            // Play the audio clip if it's not already playing and an AudioSource has been assigned
+            if (audioSource != null && !audioSource.isPlaying)
             {
                 audioSource.Play();
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // Check if the GameObject exiting the trigger is the player
+        if (other.CompareTag("Player"))
+        {
+            // Stop the audio clip if it's playing
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
             }
         }
     }
