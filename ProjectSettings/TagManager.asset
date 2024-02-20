@@ -23,6 +23,7 @@ TagManager:
   - chaiRay
   - Enemy
   - Emily
+  - sword
   layers:
   - Default
   - TransparentFX
