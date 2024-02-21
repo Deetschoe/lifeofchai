@@ -9,6 +9,7 @@ public class GameObjectManager : MonoBehaviour
 
     public int batchSize = 10; // Number of game objects to enable in each batch
     public float activationInterval = 30f; // Time interval between batches
+    public float initialDelay = 5f; // Initial delay before the first batch
 
     void Start()
     {
@@ -27,10 +28,13 @@ public class GameObjectManager : MonoBehaviour
 
     IEnumerator EnableRandomGameObjectsRoutine()
     {
+        // Initial delay before the first batch
+        yield return new WaitForSeconds(initialDelay);
+
         while (true)
         {
-            yield return new WaitForSeconds(activationInterval);
             EnableRandomGameObjects();
+            yield return new WaitForSeconds(activationInterval);
         }
     }
 
