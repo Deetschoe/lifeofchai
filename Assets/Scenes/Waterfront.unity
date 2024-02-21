@@ -1780,8 +1780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startY: -30
-  endY: 75000
-  duration: 7500
+  endY: 7500
+  duration: 750
 --- !u!1001 &1194076906
 PrefabInstance:
   m_ObjectHideFlags: 0
