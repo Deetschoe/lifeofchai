@@ -9,15 +9,12 @@ public class TriggerInteraction : MonoBehaviour
 
     void Start()
     {
-        // Attempt to get the Animator component on the GameObject
         animator = GetComponent<Animator>();
         if (animator == null)
         {
-            // If no Animator component is found, add one and assign the controller
             animator = gameObject.AddComponent<Animator>();
         }
 
-        // Assign the Animator Controller if it's provided
         if (animatorController != null)
         {
             animator.runtimeAnimatorController = animatorController;
@@ -27,55 +24,53 @@ public class TriggerInteraction : MonoBehaviour
             Debug.LogError("Animator Controller not assigned. Please assign one in the inspector or through script.");
         }
 
-        // Get the AudioSource component attached to this GameObject
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            Debug.LogError("AudioSource component missing from this GameObject. Attach one.");
+            audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource if not present
+            Debug.LogWarning("AudioSource component was missing and has been added.");
         }
 
-        // Initially set "inRoom6" to false
+        // Ensure this parameter name matches your Animator's setup
         if (animator != null)
         {
-            animator.SetBool("inRoom6", false); // Ensure this is the correct parameter name in your Animator
+            animator.SetBool("inRoom6", false);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if the entering collider is tagged as Player
         if (other.CompareTag("Player"))
         {
-            // Play the audio if the clip is assigned and the AudioSource exists
+            Debug.Log("Player entered; setting inRoom6 to true");
+
             if (clip != null && audioSource != null)
             {
                 audioSource.clip = clip;
                 audioSource.Play();
             }
 
-            // Set "inRoom6" to true to trigger the animation
             if (animator != null)
             {
-                animator.SetBool("inRoom6", true); // This will queue the animation based on your Animator's setup
+                animator.SetBool("inRoom6", true);
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        // Check if the exiting collider is tagged as Player
+        Debug.Log("Player exited; setting inRoom6 to false");
+
         if (other.CompareTag("Player"))
         {
-            // Stop the audio
             if (audioSource.isPlaying)
             {
-                audioSource.Stop(); // Use Stop() to completely stop the audio
+                audioSource.Stop();
             }
 
-            // Optionally reset "inRoom6" to false if you want to reset the animation state
             if (animator != null)
             {
-                animator.SetBool("inRoom6", false); // This will reset the animation based on your Animator's setup
+                animator.SetBool("inRoom6", false);
             }
         }
     }
