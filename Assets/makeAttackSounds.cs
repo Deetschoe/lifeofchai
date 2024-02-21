@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class makeAttackSounds : MonoBehaviour
 {
-    public AudioClip[] randomAudioClips;
+    public AudioClip[] enemyAttackClips;
+    public AudioClip[] gameObjectScreamClips;
     public float proximityThreshold = 5f;
 
-    private AudioSource audioSource;
-    private bool isPlaying = false;
+    private AudioSource enemyAudioSource;
+    private AudioSource gameObjectAudioSource;
+    private bool isPlayingEnemyAudio = false;
+    private bool isPlayingGameObjectAudio = false;
 
     void Start()
     {
-        // Ensure there is an AudioSource component attached to the GameObject
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        // Ensure there is an AudioSource component attached to the GameObject for enemy audio
+        enemyAudioSource = GetComponent<AudioSource>();
+        if (enemyAudioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            enemyAudioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        // Start playing audio when the script is first initialized
-        PlayRandomAudio();
+        // Ensure there is an AudioSource component attached to the GameObject for game object audio
+        gameObjectAudioSource = gameObject.AddComponent<AudioSource>();
+
+        // Start playing enemy audio when the script is first initialized
+        PlayEnemyAttackAudio();
     }
 
     void Update()
@@ -33,37 +39,69 @@ public class makeAttackSounds : MonoBehaviour
             // Check proximity to the enemy
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (distance < proximityThreshold && !isPlaying)
+            if (distance < proximityThreshold && !isPlayingEnemyAudio)
             {
-                // Play random audio clip on the enemy
-                PlayRandomAudio();
+                // Play enemy attack audio on the enemy
+                PlayEnemyAttackAudio();
 
-                // Set a flag to prevent playing audio until the current clip finishes
-                isPlaying = true;
+                // Set a flag to prevent playing enemy audio until the current clip finishes
+                isPlayingEnemyAudio = true;
 
-                // Invoke a method to reset the flag after the audio clip duration
-                float clipDuration = audioSource.clip.length;
-                Invoke("ResetIsPlaying", clipDuration);
+                // Invoke a method to reset the flag after the enemy audio clip duration
+                float enemyClipDuration = enemyAudioSource.clip.length;
+                Invoke("ResetIsPlayingEnemyAudio", enemyClipDuration);
+            }
+
+            if (distance < proximityThreshold && !isPlayingGameObjectAudio)
+            {
+                // Play game object scream audio
+                PlayGameObjectScreamAudio();
+
+                // Set a flag to prevent playing game object audio until the current clip finishes
+                isPlayingGameObjectAudio = true;
+
+                // Invoke a method to reset the flag after the game object audio clip duration
+                float gameObjectClipDuration = gameObjectAudioSource.clip.length;
+                Invoke("ResetIsPlayingGameObjectAudio", gameObjectClipDuration);
             }
         }
     }
 
-    void PlayRandomAudio()
+    void PlayEnemyAttackAudio()
     {
-        // Pick a random audio clip from the array
-        int randomIndex = Random.Range(0, randomAudioClips.Length);
-        AudioClip randomClip = randomAudioClips[randomIndex];
+        // Pick a random enemy attack audio clip from the array
+        int randomIndex = Random.Range(0, enemyAttackClips.Length);
+        AudioClip randomClip = enemyAttackClips[randomIndex];
 
-        // Assign the chosen clip to the AudioSource
-        audioSource.clip = randomClip;
+        // Assign the chosen clip to the enemy AudioSource
+        enemyAudioSource.clip = randomClip;
 
-        // Play the audio
-        audioSource.Play();
+        // Play the enemy audio
+        enemyAudioSource.Play();
     }
 
-    void ResetIsPlaying()
+    void PlayGameObjectScreamAudio()
     {
-        // Reset the flag to allow playing audio again
-        isPlaying = false;
+        // Pick a random game object scream audio clip from the array
+        int randomIndex = Random.Range(0, gameObjectScreamClips.Length);
+        AudioClip randomClip = gameObjectScreamClips[randomIndex];
+
+        // Assign the chosen clip to the game object AudioSource
+        gameObjectAudioSource.clip = randomClip;
+
+        // Play the game object audio
+        gameObjectAudioSource.Play();
+    }
+
+    void ResetIsPlayingEnemyAudio()
+    {
+        // Reset the flag to allow playing enemy audio again
+        isPlayingEnemyAudio = false;
+    }
+
+    void ResetIsPlayingGameObjectAudio()
+    {
+        // Reset the flag to allow playing game object audio again
+        isPlayingGameObjectAudio = false;
     }
 }
