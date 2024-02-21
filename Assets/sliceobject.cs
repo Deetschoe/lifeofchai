@@ -4,16 +4,14 @@ using EzySlice;
 public class SliceObject : MonoBehaviour
 {
     public Material crossSectionMaterial; // Assign in the Inspector
+    public float explodeForce = 5f; // Adjust the force to get the desired effect
+    public Vector3 explodeDirectionOffset = Vector3.up; // Adjust this to control the explosion direction
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("sword"))
         {
-            // Assuming this script is attached to the parent object
-            // or the individual parts that you wish to slice.
             GameObject target = this.gameObject;
-
-            // Perform the slice
             Slice(target, other.transform);
         }
     }
@@ -22,9 +20,8 @@ public class SliceObject : MonoBehaviour
     {
         if (target.GetComponent<MeshFilter>() != null)
         {
-            // Calculate the direction based on the sword's orientation
-            Vector3 direction = swordTransform.right; // Use the appropriate direction that matches your sword's slicing direction
-            Vector3 position = swordTransform.position; // Position for the slice
+            Vector3 direction = swordTransform.right;
+            Vector3 position = swordTransform.position;
 
             SlicedHull slicedHull = target.Slice(position, direction, crossSectionMaterial);
             if (slicedHull != null)
@@ -34,11 +31,9 @@ public class SliceObject : MonoBehaviour
 
                 if (upperHull != null && lowerHull != null)
                 {
-                    // Setup the sliced parts to spawn correctly and enable physics interactions
-                    SetupSlicedObject(upperHull, target.transform);
-                    SetupSlicedObject(lowerHull, target.transform);
+                    SetupSlicedObject(upperHull, target.transform, direction);
+                    SetupSlicedObject(lowerHull, target.transform, -direction);
 
-                    // Optionally, if you want to deactivate the entire parent object including all children
                     if (target.transform.parent != null)
                     {
                         target.transform.parent.gameObject.SetActive(false);
@@ -56,13 +51,18 @@ public class SliceObject : MonoBehaviour
         }
     }
 
-    // Configure the sliced object's position, rotation, and add necessary physics components
-    private void SetupSlicedObject(GameObject obj, Transform originalTransform)
+    // Configure the sliced object's position, rotation, add necessary physics components, and apply force
+    private void SetupSlicedObject(GameObject obj, Transform originalTransform, Vector3 sliceDirection)
     {
         obj.transform.position = originalTransform.position;
         obj.transform.rotation = originalTransform.rotation;
+
         Rigidbody rb = obj.AddComponent<Rigidbody>();
         MeshCollider collider = obj.AddComponent<MeshCollider>();
         collider.convex = true;
+
+        // Apply a force to make the sliced parts explode away from each other
+        Vector3 forceDirection = (sliceDirection + explodeDirectionOffset).normalized * explodeForce;
+        rb.AddForce(forceDirection, ForceMode.Impulse);
     }
 }
