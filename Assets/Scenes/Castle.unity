@@ -2974,7 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c09bc05759454c5b90eccb0fff5bfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomAudioClips:
+  enemyAttackClips:
   - {fileID: 8300000, guid: 577954975a8c14ae7943dcb1b774c608, type: 3}
   - {fileID: 8300000, guid: 2148c377c9d084deaa1ed42763dd807f, type: 3}
   - {fileID: 8300000, guid: aa71ceb78046f433489b204acd4900ec, type: 3}
@@ -2991,6 +2991,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a607472231e814b2aa4acd158ded4b9e, type: 3}
   - {fileID: 8300000, guid: 81f1c139ac3e944a9b972957050a4c35, type: 3}
   - {fileID: 8300000, guid: 2e637c367c2f642df886c41f4a6cecd5, type: 3}
+  gameObjectScreamClips:
+  - {fileID: 8300000, guid: 380c31b744a35c842bfc6365fe662381, type: 3}
+  - {fileID: 8300000, guid: 640aa7faa3fbfc441b93ca82ff75d11e, type: 3}
+  - {fileID: 8300000, guid: d247a200f4303ed44932649661a17226, type: 3}
   proximityThreshold: 5
 --- !u!1 &1167382255 stripped
 GameObject:
@@ -4611,7 +4615,7 @@ PrefabInstance:
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: -0.08000004
       objectReference: {fileID: 0}
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
@@ -4626,17 +4630,17 @@ PrefabInstance:
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
@@ -5695,7 +5699,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0540050a51e5b0848b0d1bda7b8c5ddf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.457
+  m_Volume: 0.438
   m_Pitch: 1
   Loop: 1
   Mute: 0
