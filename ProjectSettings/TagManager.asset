@@ -23,12 +23,9 @@ TagManager:
   - chaiRay
   - Enemy
   - Emily
-<<<<<<< HEAD
   - sword
-=======
-  - Ground
   - Castle
->>>>>>> b4a21098ed0bdb0b7d7540f8277d3bd43e8b3db0
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -36,7 +33,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Post
+  - 
   - 
   - 
   - 

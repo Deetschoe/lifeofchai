@@ -1,59 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using EzySlice;
-using UnityEngine.InputSystem;
 
 public class SliceObject : MonoBehaviour
 {
-    public Transform planeDebug; // Used to determine the slice plane
-    public GameObject target; // The GameObject to slice
+    public Material crossSectionMaterial; // Assign this in the inspector
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && target != null)
+        if (other.CompareTag("sword")) // Ensure your sword GameObject's tag is exactly "sword"
         {
-            Slice(target);
+            // This gameObject is the target to be sliced
+            GameObject target = gameObject;
+
+            // No need to check for the "Enemy" tag here since the script itself should only be attached to enemies
+
+            // Ensure the target has a MeshFilter component
+            if (target.GetComponent<MeshFilter>() != null)
+            {
+                Slice(target, other.transform);
+            }
         }
     }
 
-    public void Slice(GameObject target)
+    private void Slice(GameObject target, Transform swordTransform)
     {
-        if (planeDebug == null)
-        {
-            Debug.LogWarning("Slice operation failed: 'planeDebug' is not assigned.");
-            return;
-        }
+        // Use the sword's transform to determine the slicing direction
+        Vector3 direction = swordTransform.right; // Adjust this based on your sword's orientation
+        Vector3 position = swordTransform.position; // Position for the slice
 
-        // Check if the target has a MeshFilter component before attempting to slice
-        if (target.GetComponent<MeshFilter>() == null)
+        // Perform the slice
+        SlicedHull slicedHull = target.Slice(position, direction, crossSectionMaterial);
+        if (slicedHull != null)
         {
-            Debug.LogWarning("Slice operation failed: Provided GameObject must have a MeshFilter Component.");
-            return;
-        }
-
-        SlicedHull hull = target.Slice(planeDebug.position, planeDebug.up);
-        if (hull != null)
-        {
-            GameObject upperHull = hull.CreateUpperHull(target, null); // Add a material if you have one
-            GameObject lowerHull = hull.CreateLowerHull(target, null); // Add a material if you have one
+            GameObject upperHull = slicedHull.CreateUpperHull(target, crossSectionMaterial);
+            GameObject lowerHull = slicedHull.CreateLowerHull(target, crossSectionMaterial);
 
             if (upperHull != null && lowerHull != null)
             {
-                Transform parentTransform = target.transform.parent;
-                upperHull.transform.SetParent(parentTransform, false);
-                lowerHull.transform.SetParent(parentTransform, false);
+                MakeItPhysical(upperHull);
+                MakeItPhysical(lowerHull);
 
-                upperHull.transform.localPosition = target.transform.localPosition;
-                lowerHull.transform.localPosition = target.transform.localPosition;
-                upperHull.transform.localRotation = target.transform.localRotation;
-                lowerHull.transform.localRotation = target.transform.localRotation;
-                upperHull.transform.localScale = target.transform.localScale;
-                lowerHull.transform.localScale = target.transform.localScale;
-
-                // Setting up Rigidbody and MeshCollider for physical interactions
-                AddPhysicsComponents(upperHull);
-                AddPhysicsComponents(lowerHull);
+                Destroy(target); // Remove the original object
             }
         }
         else
@@ -62,11 +49,10 @@ public class SliceObject : MonoBehaviour
         }
     }
 
-    // Helper method to add physics components to sliced objects
-    private void AddPhysicsComponents(GameObject obj)
+    private void MakeItPhysical(GameObject obj)
     {
-        var rb = obj.AddComponent<Rigidbody>();
-        var collider = obj.AddComponent<MeshCollider>();
-        collider.convex = true;
+        obj.AddComponent<Rigidbody>();
+        MeshCollider collider = obj.AddComponent<MeshCollider>();
+        collider.convex = true; // Ensure this is set for proper physics interaction
     }
 }

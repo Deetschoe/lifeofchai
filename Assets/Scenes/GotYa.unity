@@ -15627,26 +15627,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78d32b6707a1fe4799d83b6d4be3817, type: 3}
---- !u!1 &1619147343 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3141101260113499581, guid: 459095069ca4c374e9dc50472f799206,
-    type: 3}
-  m_PrefabInstance: {fileID: 1727864416}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1619147347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619147343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb777cc6f54d644386a3b7018c44557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeFading: 3
-  fadeDuration: 4
 --- !u!1001 &1624465834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16467,7 +16447,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 9aace6b74af32074486f7ce44a0ff820, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3141101260113499581, guid: 459095069ca4c374e9dc50472f799206, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 459095069ca4c374e9dc50472f799206,
@@ -16482,10 +16463,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1224775150}
-    - targetCorrespondingSourceObject: {fileID: 3141101260113499581, guid: 459095069ca4c374e9dc50472f799206,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1619147347}
     - targetCorrespondingSourceObject: {fileID: 6972403430118580280, guid: 459095069ca4c374e9dc50472f799206,
         type: 3}
       insertIndex: -1
@@ -20305,7 +20282,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1871060a03304c843b5c68cdeec565b1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c84954b374a8e3342a7f1e42cd100bf6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.359
   m_Pitch: 1
@@ -20315,7 +20292,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 163
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.86571586
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
