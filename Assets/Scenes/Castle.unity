@@ -943,7 +943,7 @@ PrefabInstance:
     - target: {fileID: 6248374052394367173, guid: 3232ba4b76db4b544906ff7d3d6acb2d,
         type: 3}
       propertyPath: m_TagString
-      value: sword
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4467,6 +4467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560014035022848881, guid: bc89aa62853d68b4ab2257475f7411d8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4191836728828459467, guid: bc89aa62853d68b4ab2257475f7411d8,
         type: 3}
